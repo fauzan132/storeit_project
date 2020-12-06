@@ -68,19 +68,6 @@
 						</span>
                         
 					</div>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid phone number is required: 08976****">
-						<input class="input100 form-control{{ $errors->has('telp') ? ' is-invalid' : '' }}" id="telp" type="text" name="telp" value="{{ old('telp') }}" required autofocus placeholder="Masukan No telepon anda">
-                        @if ($errors->has('telp'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('telp') }}</strong>
-                                    </span>
-                                @endif
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                        
-					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<input class="input100 form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" name="password" required placeholder="Masukan kata sandi anda">
                         @if ($errors->has('password'))
