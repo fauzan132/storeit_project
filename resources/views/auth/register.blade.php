@@ -68,6 +68,21 @@
 						</span>
                         
 					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Must be Telephone Format">
+						<input class="input100 form-control{{ $errors->has('telp') ? ' is-invalid' : '' }}" id="telp" type="text" name="telp" value="{{ old('telp') }}" required autofocus placeholder="Masukan No. Telephone">
+                        @if ($errors->has('telp'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telp') }}</strong>
+                                    </span>
+                                @endif
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone" aria-hidden="true"></i>
+						</span>
+                        
+					</div>
+
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<input class="input100 form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" name="password" required placeholder="Masukan kata sandi anda">
                         @if ($errors->has('password'))
@@ -89,22 +104,17 @@
 						</span>
 					</div>
 
-                    <div class="form-control">
-  <select>
-    <option value="0">Pilih Role</option>
-    <option value="1">Audi</option>
-    <option value="2">BMW</option>
-    <option value="3">Citroen</option>
-    <option value="4">Ford</option>
-    <option value="5">Honda</option>
-    <option value="6">Jaguar</option>
-    <option value="7">Land Rover</option>
-    <option value="8">Mercedes</option>
-    <option value="9">Mini</option>
-    <option value="10">Nissan</option>
-    <option value="11">Toyota</option>
-    <option value="12">Volvo</option>
-  </select>
+<div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+  <label class="col-md-4 control-label">Pilih Role</label> 
+  <div class="col-md-6">
+	<select name="role" class="form-control">
+		<option value="Admin">Admin</option>
+		<option value="Public">Public</option>
+		<option value="Expert ITB">Expert ITB</option>
+		<option value="Expert EWINDO">Expert EWINDO</option>
+		<option value="Expert BALITSA">Expert BALITSA</option>
+	</select>
+	</div>
 </div>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">

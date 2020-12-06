@@ -6,15 +6,27 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    @if(Auth::user()->role == 'Admin')
+                        <div class="panel-body">
+                            Ini Halaman Admin!
+                        </div>
+                    @elseif(Auth::user()->role == 'Public')
+                        <div class="panel-body">
+                            Ini Halaman Public!
+                        </div>
+                    @elseif(Auth::user()->role == 'Expert ITB')
+                        <div class="panel-body">
+                            Ini Halaman Expert ITB!
+                        </div>
+                    @elseif(Auth::user()->role == 'Expert EDWINDO')
+                        <div class="panel-body">
+                            Ini Halaman Expert EDWINDO!
+                        </div>
+                    @elseif(Auth::user()->role == 'Expert BALITSA')
+                        <div class="panel-body">
+                            Ini Halaman Expert BALITSA!
                         </div>
                     @endif
-
-                    You are logged in!
                 </div>
             </div>
         </div>
