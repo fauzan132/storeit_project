@@ -36,7 +36,7 @@
                     {{ session('status') }}
                 </div>
                 @endif
-                <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Login') }}">
                 @csrf
 					<span class="login100-form-title">
 						Daftar
