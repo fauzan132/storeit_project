@@ -71,7 +71,7 @@
         <div class="callout callout-info">
             <h4>Selamat Datang</h4>
 
-            <p>Ini Halaman Admin!</p>
+            <p>Selamat Datang dihalaman panel Admin!</p>
         </div>
         
             
