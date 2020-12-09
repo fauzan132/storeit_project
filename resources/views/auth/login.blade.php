@@ -39,7 +39,7 @@
                 <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
 					<span class="login100-form-title">
-						Member Login
+						Login
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
