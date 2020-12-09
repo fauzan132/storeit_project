@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>StoreIt | Dashboard</title>
    <!-- Tell the browser to be responsive to screen width -->
    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -72,7 +72,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Store</b>IT</span>
+      <span class="logo-lg"><b>Store</b>It</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -135,7 +135,7 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">Menu</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -178,10 +178,6 @@ desired effect
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      Anything you want
-    </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020 <a href="#">StoreIT</a>.</strong> All rights reserved.
   </footer>
