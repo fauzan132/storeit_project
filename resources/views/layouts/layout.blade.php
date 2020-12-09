@@ -306,9 +306,7 @@ desired effect
 
     <!-- Main content -->
     <section class="content">
-      <div class="content-wrapper">
         @yield('content')
-      </div>
     </section>
     <!-- /.content -->
   </div>
