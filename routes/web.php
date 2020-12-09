@@ -14,6 +14,27 @@
 Route::get('/', function () {
     return view('auth/login');
 });
+Route::group(['middleware' => ['web','auth']], function(){
+    //redirect to login
+    Route::get('/home','HomeController@index');
+    Route::get('/', function(){
+        //Super Admin
+        if(Auth::user()->role=="Admin"){
+            return view('admin.home');
+        //Admin
+        }elseif(Auth::user()->role=="Public"){
+            return view('publik.home');
+        //Tutor
+        }elseif(Auth::user()->role=="Expert ITB"){
+            return view('expert_itb.home');
+        //Siswa
+        }elseif(Auth::user()->role=="Expert EDWINDO"){
+            return view('expert_ewindo.home');
+        }elseif(Auth::user()->role=="Expert BALITSA"){
+            return view('expert_balista.home');
+        }
+    });
+});
 
 Auth::routes();
 
