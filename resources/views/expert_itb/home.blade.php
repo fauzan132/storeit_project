@@ -72,7 +72,7 @@
         <div class="callout callout-info">
         <h4>Selamat Datang</h4>
 
-        <p> Ini Halaman Expert ITB!</p>
+        <p> Selamat Datang dihalaman panel Expert ITB!</p>
         </div>
         </section>
         <!-- /.Left col -->

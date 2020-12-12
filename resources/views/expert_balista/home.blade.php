@@ -72,7 +72,7 @@
         <div class="callout callout-info">
         <h4>Selamat Datang</h4>
 
-        <p> Ini Halaman Expert BALITSA!</p>
+        <p> Selamat Datang dihalaman panel Expert BALITSA!</p>
         </div>
             
         </section>

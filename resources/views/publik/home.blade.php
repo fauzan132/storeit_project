@@ -68,37 +68,11 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
-        @if(Auth::user()->role == 'Admin')
         <div class="callout callout-info">
             <h4>Selamat Datang</h4>
 
-            <p>Ini Halaman Admin!</p>
+            <p>Selamat Datang dihalaman panel Publik!</p>
         </div>
-        @elseif(Auth::user()->role == 'Public')
-        <div class="callout callout-info">
-        <h4>Selamat Datang</h4>
-
-        <p> Ini Halaman Public!</p>
-        </div>
-        @elseif(Auth::user()->role == 'Expert ITB')
-        <div class="callout callout-info">
-        <h4>Selamat Datang</h4>
-
-        <p> Ini Halaman Expert ITB!</p>
-        </div>
-        @elseif(Auth::user()->role == 'Expert EDWINDO')
-        <div class="callout callout-info">
-        <h4>Selamat Datang</h4>
-
-        <p> Ini Halaman Expert EDWINDO!</p>
-        </div>
-        @elseif(Auth::user()->role == 'Expert BALITSA')
-        <div class="callout callout-info">
-        <h4>Selamat Datang</h4>
-
-        <p> Ini Halaman Expert BALITSA!</p>
-        </div>           
-        @endif
             
         </section>
         <!-- /.Left col -->
