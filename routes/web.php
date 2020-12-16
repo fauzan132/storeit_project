@@ -39,5 +39,13 @@ Route::group(['middleware' => ['web','auth']], function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
+
+//Kelola Data by Admin
+Route::get('admin-data/index/', 'KelolaDataController@index');
+Route::get('admin-data/create/', 'KelolaDataController@create');
+Route::post('admin-data/simpan/', 'KelolaDataController@store');
+Route::get('admin-data/detail/{id}', 'KelolaDataController@show');
+Route::get('admin-data/edit/{id}', 'KelolaDataController@edit');
+Route::post('admin-data/update/{id}', 'KelolaDataController@update');
+Route::get('admin-data/hapus/{id}', 'KelolaDataController@destroy');
