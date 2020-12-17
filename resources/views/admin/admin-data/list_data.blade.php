@@ -30,12 +30,12 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>Image</th>
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
                     <th>General Ident</th>
                     <th>Status</th>
                     <th>Current Date</th>
-                    <th>Image URL</th>
                     <th>Image Comment</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
@@ -47,12 +47,12 @@
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
+                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
                     <td>{{ $value->status }}</td>
                     <td>{{ $value->currentDate }}</td>
-                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
                     <td>{{ $value->ImageComment }}</td>
                     <td>
                         <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
@@ -66,12 +66,12 @@
                 <tfoot>
                 <tr>
                     <th>No</th>
+                    <th>Image</th>
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
                     <th>General Ident</th>
                     <th>Status</th>
                     <th>Current Date</th>
-                    <th>Image URL</th>
                     <th>Image Comment</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
