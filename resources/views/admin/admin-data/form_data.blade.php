@@ -1,29 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Tambah Data</title>
-</head>
-<body>
-    <form  method="POST" action="{{ url('admin-data/simpan') }}">
-        {{ csrf_field() }}
-        <label>Plant Type</label>
-        <input type="text" name="planttype">
-        <label>Plant Organ</label>
-        <input type="text" name="plantorgan">
-        <label>General Ident</label>
-        <input type="text" name="generalident">
-        <label>Status</label>
-        <input type="text" name="status">
-        <label>Image URL</label>
-        <input type="text" name="imageurl">
-        <label>Image Comment</label>
-        <input type="text" name="imagecomment">
- 
-        <a href="{{ url('admin-data/index/') }}">Batal</a>
-        <button type="submit">Simpan</button>
+@extends('layouts.layout')
 
-    </form>    
-</body>
-</html>
+@section('content')
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Data Tanaman</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" method="POST" action="{{ url('admin-data/simpan') }}">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="planttype" class="form-control" id="planttype" placeholder="Plant Type ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Plant Organ</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="plantorgan" class="form-control" id="plantorgan" placeholder="Plant Organ ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">General Ident</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="generalident" class="form-control" id="generalident" placeholder="General Ident ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Status</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="status" class="form-control" id="status" placeholder="Status ....">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
+
+                  <div class="col-sm-10">
+                    <input type="file" name="imageurl" class="form-control" id="imageurl">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
+
+                  <div class="col-sm-10">
+                    <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Coment ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10">
+                  <a href="{{ url('admin-data/index/') }}" class="btn btn-default"><i class="fa fa-close"></i> Batal</a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                  </div>
+                </div>
+              </div>
+              <div class="box-footer">
+              
+              </div>
+            </form>
+          </div>
+        </div>
+          <!-- /.box -->
+        
+            
+        </section>
+        <!-- /.Left col -->
+      </div>
+      <!-- /.row (main row) -->
+      
+@endsection
