@@ -24,7 +24,8 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="{{ url('admin-data/simpan') }}">
+            <form class="form-horizontal" method="POST" action="{{ url('admin-data/simpan') }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
@@ -58,7 +59,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
 
                   <div class="col-sm-10">
-                    <input type="file" name="imageurl" class="form-control" id="imageurl">
+                    <input type="file" name="file" class="form-control" id="file">
                   </div>
                 </div>
                 <div class="form-group">

@@ -41,17 +41,17 @@ class KelolaDataController extends Controller
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
         $status=$request->input('status');
-        //$currentdate = date('d-m-Y');
-        $imageurl=$request->input('imageurl');
         $imagecomment=$request->input('imagecomment');
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
+        $request->file('file')->move('images/',$filename);
         
         $data=new KelolaData();
         $data->plantType = $planttype;
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
         $data->status = $status;
-        //$data->currentDate = $currentdate;
-        $data->ImageURL = $imageurl;
+        $data->ImageURL = $filename;
         $data->ImageComment = $imagecomment;
 
         $data->save();
@@ -97,17 +97,24 @@ class KelolaDataController extends Controller
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
         $status=$request->input('status');
-        //$currentdate = date('d-m-Y');
-        $imageurl=$request->input('imageurl');
         $imagecomment=$request->input('imagecomment');
+
+        if( $file = $request->file('file'))
+        {
+            $filename = $file->getClientOriginalName();
+            $request->file('file')->move('images',$filename);
+            $img = $filename;
+        }else
+        {
+            $img = $request->tmp_image ;
+        }
         
         $data = KelolaData::where('imageID', $id)->first();
         $data->plantType = $planttype;
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
         $data->status = $status;
-        //$data->currentDate = $currentdate;
-        $data->ImageURL = $imageurl;
+        $data->ImageURL = $img;
         $data->ImageComment = $imagecomment;
 
         $data->save();

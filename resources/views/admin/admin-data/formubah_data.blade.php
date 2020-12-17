@@ -25,6 +25,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="{{ url('admin-data/update',$data['imageID']) }}">
+            {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
@@ -65,7 +66,9 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}">
+                    <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
+                    <img src="{{ URL::asset($data['ImageURL']) }}" width="150px">
+                    <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
                   </div>
                 </div>
                 <div class="form-group">
