@@ -1,30 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Ubah Data</title>
-</head>
-<body>
-<form  method="POST" action="{{ url('admin-data/update',$data['imageID']) }}">
-        {{ csrf_field() }}
-        <label>Image ID</label>
-        <input type="text" name="imageid" value="{{ $data['imageID'] }}" disabled>
-        <label>Plant Type</label>
-        <input type="text" name="planttype" value="{{ $data['plantType'] }}">
-        <label>Plant Organ</label>
-        <input type="text" name="plantorgan" value="{{ $data['plantOrgan'] }}">
-        <label>General Ident</label>
-        <input type="text" name="generalident" value="{{ $data['generalIdent'] }}">
-        <label>Status</label>
-        <input type="text" name="status" value="{{ $data['status'] }}">
-        <label>Image URL</label>
-        <input type="text" name="imageurl" value="{{ $data['ImageURL'] }}">
-        <label>Image Comment</label>
-        <input type="text" name="imagecomment" value="{{ $data['ImageComment'] }}">
- 
-        <a href="{{ url('admin-data/index/') }}">Batal</a>
-        <button type="submit">Simpan</button>
-    </form>    
-</body>
-</html>
+@extends('layouts.layout')
+
+@section('content')
+<section class="content-header">
+      <h1>
+      Data Tanaman
+      </h1>
+<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-image"></i> Data Tanaman</a></li>
+        <li class="active">Tambah Data</li></li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">   
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12 connectedSortable">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Data Tanaman</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" method="POST" action="{{ url('admin-data/update',$data['imageID']) }}">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="planttype" class="form-control" id="planttype" value="{{ $data['plantType'] }}" placeholder="Plant Type ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Plant Organ</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="plantorgan" class="form-control" id="plantorgan" value="{{ $data['plantOrgan'] }}" placeholder="Plant Organ ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">General Ident</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="generalident" class="form-control" id="generalident" value="{{ $data['generalIdent'] }}" placeholder="General Ident ...">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Status</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="status" class="form-control" id="status"  value="{{ $data['status'] }}" placeholder="Status ....">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Image ID</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="imageid" value="{{ $data['imageID'] }}" disabled class="form-control" id="imageid">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
+
+                  <div class="col-sm-10">
+                    <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Coment ..." value="{{ $data['ImageComment'] }}">
+                  </div>
+                </div>
+                <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                  <div class="col-sm-10">
+                  <a href="{{ url('admin-data/index/') }}" class="btn btn-default"><i class="fa fa-close"></i> Batal</a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                  </div>
+                </div>
+              </div>
+              <div class="box-footer">
+              
+              </div>
+            </form>
+          </div>
+        </div>
+          <!-- /.box -->
+        
+            
+        </section>
+        <!-- /.Left col -->
+      </div>
+      <!-- /.row (main row) -->
+</section>
+@endsection
