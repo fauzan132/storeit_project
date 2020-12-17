@@ -1,13 +1,26 @@
 @extends('layouts.layout')
 
 @section('content')
+<section class="content-header">
+      <h1>
+      Data Tanaman
+      </h1>
+<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li>Data Tanaman</li>
+        <li class="active">Index</li></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">    
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Tanaman</h3>
+              <h3 class="box-title">List Data Tanaman</h3>
             </div>
             
             <!-- /.box-header -->
@@ -75,7 +88,7 @@
         <!-- /.Left col -->
       </div>
       <!-- /.row (main row) -->
-      
+</section>
 @endsection
 
 

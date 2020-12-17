@@ -1,6 +1,17 @@
 @extends('layouts.layout')
 
 @section('content')
+<section class="content-header">
+      <h1>
+      Data Tanaman
+      </h1>
+<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-image"></i> Data Tanaman</a></li>
+        <li class="active">Tambah Data</li></li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">   
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
@@ -9,7 +20,7 @@
             <!-- /.box-header -->
             <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Data Tanaman</h3>
+              <h3 class="box-title">Tambah Data Tanaman</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -78,5 +89,5 @@
         <!-- /.Left col -->
       </div>
       <!-- /.row (main row) -->
-      
+</section>
 @endsection
