@@ -55,10 +55,10 @@
                     <td>{{ $value->ImageURL }}</td>
                     <td>{{ $value->ImageComment }}</td>
                     <td>
-                        <a href="{{ url('admin-data/edit', $value->imageID) }}" title="Ubah Data ini">Ubah</a>
+                        <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
                     </td>
                     <td>
-                        <a href="{{ url('admin-data/hapus', $value->imageID) }}" title="Hapus Data ini">Hapus</a>
+                        <a href="{{ url('admin-data/hapus', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
                     </td>
                 </tr>
                 @endforeach

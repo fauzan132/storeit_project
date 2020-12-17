@@ -25,6 +25,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="{{ url('admin-data/update',$data['imageID']) }}">
+            {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
