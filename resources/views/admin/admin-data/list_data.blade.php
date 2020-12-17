@@ -52,7 +52,7 @@
                     <td>{{ $value->generalIdent }}</td>
                     <td>{{ $value->status }}</td>
                     <td>{{ $value->currentDate }}</td>
-                    <td>{{ $value->ImageURL }}</td>
+                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
                     <td>{{ $value->ImageComment }}</td>
                     <td>
                         <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>

@@ -67,7 +67,7 @@
 
                   <div class="col-sm-10">
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
-                    <img src="{{ URL::asset($data['ImageURL']) }}" width="150px">
+                    <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" width="500px">
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
                   </div>
                 </div>
