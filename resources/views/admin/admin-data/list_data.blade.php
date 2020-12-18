@@ -36,7 +36,7 @@
                     <th>General Ident</th>
                     <th>Status</th>
                     <th>Current Date</th>
-                    <th>Image Comment</th>
+                    <th>Cropping Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
                 </tr>
@@ -53,7 +53,9 @@
                     <td>{{ $value->generalIdent }}</td>
                     <td>{{ $value->status }}</td>
                     <td>{{ $value->currentDate }}</td>
-                    <td>{{ $value->ImageComment }}</td>
+                    <td>
+                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-plus"></i> Crop</a>
+                    </td>
                     <td>
                         <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
                     </td>
@@ -89,6 +91,7 @@
       </div>
       <!-- /.row (main row) -->
 </section>
+
 @endsection
 
 
