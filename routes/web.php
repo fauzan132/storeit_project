@@ -18,16 +18,12 @@ Route::group(['middleware' => ['web','auth']], function(){
     //redirect to login
     Route::get('/home','HomeController@index');
     Route::get('/', function(){
-        //Super Admin
         if(Auth::user()->role=="Admin"){
             return view('admin.home');
-        //Admin
         }elseif(Auth::user()->role=="Public"){
             return view('publik.home');
-        //Tutor
         }elseif(Auth::user()->role=="Expert ITB"){
             return view('expert_itb.home');
-        //Siswa
         }elseif(Auth::user()->role=="Expert EDWINDO"){
             return view('expert_ewindo.home');
         }elseif(Auth::user()->role=="Expert BALITSA"){
@@ -49,3 +45,7 @@ Route::get('admin-data/detail/{id}', 'KelolaDataController@show');
 Route::get('admin-data/edit/{id}', 'KelolaDataController@edit');
 Route::post('admin-data/update/{id}', 'KelolaDataController@update');
 Route::get('admin-data/hapus/{id}', 'KelolaDataController@destroy');
+
+//Fitur Cropping
+Route::post('admin-data/upload','KelolaDataController@upload');
+Route::get('admin-data/cropping','KelolaDataController@cropping');

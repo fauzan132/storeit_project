@@ -24,7 +24,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="{{ url('admin-data/update',$data['imageID']) }}">
+            <form class="form-horizontal" method="POST" action="{{ url('admin-data/update',$data['imageID']) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
@@ -69,6 +69,7 @@
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
                     <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" width="500px">
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
+                    <input type="file" name="file" class="form-control" id="file">
                   </div>
                 </div>
                 <div class="form-group">
