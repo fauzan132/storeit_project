@@ -20,12 +20,12 @@ img {
 @section('content')
 <section class="content-header">
       <h1>
-      Data Tanaman
+      List Data Tanaman Crop
       </h1>
 <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li>Data Tanaman</li>
-        <li class="active">Index</li></li>
+        <li class="active">Data Tanaman Crop</li>
       </ol>
     </section>
 
@@ -36,13 +36,12 @@ img {
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
         <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">List Data Tanaman</h3>
-            </div>
-            
             <!-- /.box-header -->
             <div class="box-body">
-            <a href="{{ url('admin-data/create') }}"><button type="button" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
+            <label>Image ID = {{$data->imageID}}</label>
+            <img src="{{ URL::asset("images/{$data->ImageURL}") }}" width="150px"><br>
+            <a href="{{ url('admin-data/index/') }}" class="btn btn-default">Balik Badan Slur</a>
+            <br><br>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -52,34 +51,26 @@ img {
                     <th>Plant Organ</th>
                     <th>General Ident</th>
                     <th>Status</th>
-                    <th>Lihat Data Crop</th>
-                    <th>Cropping Data</th>
-                    <th>Ubah Data</th>
+                    <th>Tambah Label</th>
                     <th>Hapus Data</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php $no = 0;?>
-            @foreach($data as $row => $value)
+            @foreach($data2 as $row => $value)
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
+                    <td><img src="{{ URL::asset("upload/{$value->ImageURL}") }}" width="150px"></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
                     <td>{{ $value->status }}</td>
                     <td>
-                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn btn-default btn-md" title="Crop Data ini"><i class="fa fa-plus"></i> Lihat</a>
+                        <a href="{{ url('admin-data/crop/edit', $value->imageID) }}" class="btn btn-success btn-md" title="Ubah Data ini"><i class="fa fa-plus"></i> Tambah</a>
                     </td>
                     <td>
-                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-plus"></i> Crop</a>
-                    </td>
-                    <td>
-                        <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
-                    </td>
-                    <td>
-                        <a href="{{ url('admin-data/hapus', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
+                        <a href="{{ url('admin-data/crop/hapus', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
                     </td>
                 </tr>
                 @endforeach
@@ -92,9 +83,7 @@ img {
                     <th>Plant Organ</th>
                     <th>General Ident</th>
                     <th>Status</th>
-                    <th>Lihat Data Crop</th>
-                    <th>Cropping Data</th>
-                    <th>Ubah Data</th>
+                    <th>Tambah Label</th>
                     <th>Hapus Data</th>
                 </tr>
                 </tfoot>

@@ -24,7 +24,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="{{ url('admin-data/update',$data['imageID']) }}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{ url('admin-data/crop/update',$data['imageID']) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
               <div class="form-group">
@@ -32,8 +32,9 @@
 
                   <div class="col-sm-10">
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
-                    <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" width="500px">
+                    <img src="{{ URL::asset("upload/{$data['ImageURL']}") }}" width="256px">
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
+                    <input type="hidden" name="imageid_raw" value="{{ $data['imageID_raw'] }}">
                     <!-- <input type="file" name="file" class="form-control" id="file"> -->
                   </div>
                 </div>
@@ -65,13 +66,6 @@
                     <input type="text" name="status" class="form-control" id="status"  value="{{ $data['status'] }}" placeholder="Status ....">
                   </div>
                 </div>
-                <!-- <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Image ID</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="imageid" value="{{ $data['imageID'] }}" disabled class="form-control" id="imageid">
-                  </div>
-                </div> -->
                 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>

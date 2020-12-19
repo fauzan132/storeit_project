@@ -49,3 +49,9 @@ Route::get('admin-data/hapus/{id}', 'KelolaDataController@destroy');
 //Fitur Cropping
 Route::post('admin-data/upload/{id}','KelolaDataController@upload');
 Route::get('admin-data/cropping/{id}','KelolaDataController@cropping');
+
+//Kelola Data Crop
+Route::get('admin-data/crop/awal/{id}', 'KelolaDataCropController@awal');
+Route::get('admin-data/crop/edit/{id}', 'KelolaDataCropController@edit');
+Route::post('admin-data/crop/update/{id}', 'KelolaDataCropController@update');
+Route::get('admin-data/crop/hapus/{id}', 'KelolaDataCropController@destroy');
