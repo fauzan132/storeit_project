@@ -49,7 +49,7 @@
                 <tr>
                 <td>{{ $no }}</td>
                     <td> 
-                    <a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="Flower">
+                    <a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $value->plantType }}">
           <img src="{{ URL::asset("images/{$value->ImageURL}") }}" class="img-fluid" style="width:200px">
         </a></td>
                     <td>{{ $value->plantType }}</td>
