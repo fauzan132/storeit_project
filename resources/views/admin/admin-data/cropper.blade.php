@@ -26,29 +26,21 @@ img {
 }
 </style>
 <body>
-<div class="container">
-<<<<<<< HEAD
-    <h1>Coba Crop Image {{ $data->imageID }}</h1>
-=======
-    <h1>Coba Crop Image</h1>
->>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
-    <input type="file" name="image" class="image">
-</div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal hide fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalLabel">Crop This Image</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <a class="close" aria-label="Close" href="{{ url('admin-data/index/') }}">
           <span aria-hidden="true">×</span>
-        </button>
+        </a>
       </div>
       <div class="modal-body">
         <div class="img-container">
             <div class="row">
                 <div class="col-md-8">
-                    <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+                    <img id="image" src="{{ URL::asset("images/{$data->ImageURL}") }}">
                 </div>
                 <div class="col-md-4">
                     <div class="preview"></div>
@@ -58,7 +50,7 @@ img {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-secondary" href="{{ url('admin-data/index/') }}">Cancel</a>
         <button type="button" class="btn btn-primary" id="crop">Crop</button>
       </div>
     </div>
@@ -68,25 +60,22 @@ img {
 </div>
 </div>
 <script>
-
 var $modal = $('#modal');
 var image = document.getElementById('image');
 var cropper;
   
 //memunculkan preview image ke modal
+$modal.modal('show');
 $("body").on("change", ".image", function(e){
     var files = e.target.files;
     var done = function (url) {
       image.src = url;
-      $modal.modal('show');
     };
     var reader;
     var file;
     var url;
-
     if (files && files.length > 0) {
       file = files[0];
-
       if (URL) {
         done(URL.createObjectURL(file));
       } else if (FileReader) {
@@ -98,12 +87,11 @@ $("body").on("change", ".image", function(e){
       }
     }
 });
-
 //aksi crop di modal
 $modal.on('shown.bs.modal', function () {
     cropper = new Cropper(image, {
 	  aspectRatio: 1,
-	  viewMode: 3,
+	  viewMode: 1,
 	  preview: '.preview',
 	  cropBoxResizable: false,
 	  dragMode: 'move',
@@ -118,12 +106,11 @@ $modal.on('shown.bs.modal', function () {
    cropper.destroy();
    cropper = null;
 });
-
 //cropping image
 $("#crop").click(function(){
     canvas = cropper.getCroppedCanvas({
-	    width: 260,
-	    height: 260,
+	    width: 256,
+	    height: 256,
       });
 	
 	//upload to folder "upload"
@@ -133,29 +120,20 @@ $("#crop").click(function(){
          reader.readAsDataURL(blob); 
          reader.onloadend = function() {
             var base64data = reader.result;	
-
             $.ajax({
                 type: "POST",
                 dataType: "json",
-<<<<<<< HEAD
                 url: "{{ url('admin-data/upload',$data->imageID) }}",
-=======
-                url: "upload",
->>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
                 data: {'_token': $('meta[name="_token"]').attr('content'), 'image': base64data},
                 success: function(data){
                     $modal.modal('hide');
                     alert("success upload image");
-<<<<<<< HEAD
                     window.location.href = "{{ url('admin-data/index/') }}";
-=======
->>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
                 }
               });
          }
     });
 })
-
 </script>
 </body>
 </html> 

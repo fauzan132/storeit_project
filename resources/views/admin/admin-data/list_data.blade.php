@@ -1,5 +1,22 @@
 @extends('layouts.layout')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" integrity="sha256-jKV9n9bkk/CTP8zbtEtnKaKf+ehRovOYeKoyfthwbC8=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js" integrity="sha256-CgvH7sz3tHhkiVKh05kSUgG97YtzYNnWt6OXcmYzqHY=" crossorigin="anonymous"></script>
+<style type="text/css">
+img {
+  display: block;
+  max-width: 100%;
+}
+.preview {
+  overflow: hidden;
+  width: 160px; 
+  height: 160px;
+  margin: 10px;
+  border: 1px solid red;
+}
+.modal-lg{
+  max-width: 1000px !important;
+}
+</style>
 @section('content')
 <section class="content-header">
       <h1>
@@ -25,8 +42,7 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-            <a href="{{ url('admin-data/create') }}"><button type="button" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a>
-            <a href="{{ url('admin-data/cropping') }}"><button type="button" class="btn btn-success btn-md"><i class="fa fa-crop"></i> Crop Foto/Gambar</button></a><br><br>
+            <a href="{{ url('admin-data/create') }}"><button type="button" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -36,7 +52,7 @@
                     <th>Plant Organ</th>
                     <th>General Ident</th>
                     <th>Status</th>
-                    <th>Current Date</th>
+                    <th>Lihat Data Crop</th>
                     <th>Cropping Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
@@ -48,15 +64,14 @@
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td> 
-                    <a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $value->plantType }}">
-          <img src="{{ URL::asset("images/{$value->ImageURL}") }}" class="img-fluid" style="width:200px">
-        </a></td>
+                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
                     <td>{{ $value->status }}</td>
-                    <td>{{ $value->currentDate }}</td>
+                    <td>
+                        <button class="btn btn-default btn-md" title="Lihat Data ini" data-target="#myModal"><i class="fa fa-plus"></i> Lihat</button>
+                    </td>
                     <td>
                         <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-plus"></i> Crop</a>
                     </td>
@@ -77,8 +92,8 @@
                     <th>Plant Organ</th>
                     <th>General Ident</th>
                     <th>Status</th>
-                    <th>Current Date</th>
-                    <th>Image Comment</th>
+                    <th>Lihat Data Crop</th>
+                    <th>Cropping Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
                 </tr>
@@ -88,14 +103,35 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        <!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
         
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
             
         </section>
         <!-- /.Left col -->
       </div>
       <!-- /.row (main row) -->
 </section>
-
 @endsection
 
 
