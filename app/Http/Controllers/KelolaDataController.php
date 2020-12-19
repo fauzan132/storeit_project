@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\KelolaData;
+use App\KelolaDataCrop;
 use Illuminate\Http\Request;
 
 class KelolaDataController extends Controller
@@ -98,16 +99,7 @@ class KelolaDataController extends Controller
         $generalident=$request->input('generalident');
         $status=$request->input('status');
         $imagecomment=$request->input('imagecomment');
-
-        if( $file = $request->file('file'))
-        {
-            $filename = $file->getClientOriginalName();
-            $request->file('file')->move('images',$filename);
-            $img = $filename;
-        }else
-        {
-            $img = $request->tmp_image ;
-        }
+        $img = $request->tmp_image;
         
         $data = KelolaData::where('imageID', $id)->first();
         $data->plantType = $planttype;
@@ -133,6 +125,19 @@ class KelolaDataController extends Controller
         return redirect('admin-data/index');
     }
 
+<<<<<<< HEAD
+    public function cropping($id)
+    {
+        $data = KelolaData::find($id);
+        //print_r($data->imageID);
+        return view('admin.admin-data.cropper')
+        ->with('data', $data);
+    }
+
+    public function upload(Request $request,$id)
+    {
+        $folderPath = public_path('upload/');
+=======
     public function cropping()
     {
         return view('admin.admin-data.cropper');
@@ -142,13 +147,25 @@ class KelolaDataController extends Controller
     {
         $folderPath = public_path('upload/');
 
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
+<<<<<<< HEAD
+        $temp = uniqid() . '.png';
+        $file = $folderPath . $temp;
+        file_put_contents($file, $image_base64);
+
+        $data=new KelolaDataCrop();
+        $data->imageID_raw = $id;
+        $data->ImageURL = $temp;
+        $data->save();
+=======
         $file = $folderPath . uniqid() . '.png';
 
         file_put_contents($file, $image_base64);
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
 
         return response()->json(['success'=>'success']);
     }
