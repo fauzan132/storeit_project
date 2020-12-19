@@ -64,7 +64,9 @@ img {
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
+                    <td><a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="Flower">
+          <img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px" class="img-fluid">
+        </a></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
