@@ -25,7 +25,8 @@
             
             <!-- /.box-header -->
             <div class="box-body">
-            <a href="{{ url('admin-data/create') }}"><button type="button" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
+            <a href="{{ url('admin-data/create') }}"><button type="button" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a>
+            <a href="{{ url('admin-data/cropping') }}"><button type="button" class="btn btn-success btn-md"><i class="fa fa-crop"></i> Crop Foto/Gambar</button></a><br><br>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -47,7 +48,10 @@
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td><img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px"></td>
+                    <td> 
+                    <a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $value->plantType }}">
+          <img src="{{ URL::asset("images/{$value->ImageURL}") }}" class="img-fluid" style="width:200px">
+        </a></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>

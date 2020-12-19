@@ -125,6 +125,7 @@ class KelolaDataController extends Controller
         return redirect('admin-data/index');
     }
 
+<<<<<<< HEAD
     public function cropping($id)
     {
         $data = KelolaData::find($id);
@@ -136,10 +137,22 @@ class KelolaDataController extends Controller
     public function upload(Request $request,$id)
     {
         $folderPath = public_path('upload/');
+=======
+    public function cropping()
+    {
+        return view('admin.admin-data.cropper');
+    }
+
+    public function upload(Request $request)
+    {
+        $folderPath = public_path('upload/');
+
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
         $image_parts = explode(";base64,", $request->image);
         $image_type_aux = explode("image/", $image_parts[0]);
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
+<<<<<<< HEAD
         $temp = uniqid() . '.png';
         $file = $folderPath . $temp;
         file_put_contents($file, $image_base64);
@@ -148,6 +161,11 @@ class KelolaDataController extends Controller
         $data->imageID_raw = $id;
         $data->ImageURL = $temp;
         $data->save();
+=======
+        $file = $folderPath . uniqid() . '.png';
+
+        file_put_contents($file, $image_base64);
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
 
         return response()->json(['success'=>'success']);
     }

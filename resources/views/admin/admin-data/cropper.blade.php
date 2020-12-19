@@ -27,7 +27,11 @@ img {
 </style>
 <body>
 <div class="container">
+<<<<<<< HEAD
     <h1>Coba Crop Image {{ $data->imageID }}</h1>
+=======
+    <h1>Coba Crop Image</h1>
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
     <input type="file" name="image" class="image">
 </div>
 
@@ -133,12 +137,19 @@ $("#crop").click(function(){
             $.ajax({
                 type: "POST",
                 dataType: "json",
+<<<<<<< HEAD
                 url: "{{ url('admin-data/upload',$data->imageID) }}",
+=======
+                url: "upload",
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
                 data: {'_token': $('meta[name="_token"]').attr('content'), 'image': base64data},
                 success: function(data){
                     $modal.modal('hide');
                     alert("success upload image");
+<<<<<<< HEAD
                     window.location.href = "{{ url('admin-data/index/') }}";
+=======
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
                 }
               });
          }

@@ -71,8 +71,24 @@
                   <div class="col-sm-10">
                     <input type="text" name="imageid" value="{{ $data['imageID'] }}" disabled class="form-control" id="imageid">
                   </div>
+<<<<<<< HEAD
                 </div> -->
                 
+=======
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
+
+                  <div class="col-sm-10">
+                    <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
+                    <a href="{{ URL::asset("images/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}">
+          <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid" style="width:350px">
+        </a>
+                    <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
+                    <input type="file" name="file" class="form-control" id="file">
+                  </div>
+                </div>
+>>>>>>> aadc8ec153b8a99c80f2e6e17cbec5c02373f657
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
 

@@ -39,11 +39,11 @@
                 <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
 					<span class="login100-form-title">
-						Login
+						Masuk
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
+						<input class="input100 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="Masukan Email anda ...">
                         @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -57,7 +57,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100 form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" name="password" required>
+						<input class="input100 form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" type="password" name="password" required placeholder="Masukan kata sandi anda ...">
                         @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -71,17 +71,17 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Masuk
 						</button>
 					</div>
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
-							Forgot
+							Lupa
                         </span>
                         @if (Route::has('password.request'))
                         <a class="txt2" href="{{ route('password.request') }}">
-							Password?
+							kata sandi ?
 						</a>
                         @endif
 						
