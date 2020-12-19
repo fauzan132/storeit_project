@@ -48,8 +48,10 @@
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td><a data-toggle="lightbox" data-gallery="gallery" href="{{ URL::asset("images/{$value->ImageURL}") }}">
-<img class="imggallery"src="{{ URL::asset("images/{$value->ImageURL}") }}"></a></td>
+                    <td> 
+                    <a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="Flower">
+          <img src="{{ URL::asset("images/{$value->ImageURL}") }}" class="img-fluid" style="width:200px">
+        </a></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>

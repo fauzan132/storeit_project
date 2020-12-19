@@ -47,12 +47,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-<style>
-  /* CSS for Lightbox */
-.imggallery{
-    max-height: 150px;
-}
-</style>  
 
 </head>
 <!--
@@ -228,6 +222,19 @@ desired effect
 <script src="{{ asset('dist/js/app.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({
+          alwaysShowClose: true,
+          showArrows: true,
+        });
+      });
+    });
+
+  </script>
 <!-- page script -->
 <script>
   $(function () {
@@ -242,12 +249,5 @@ desired effect
     });
   });
 </script>
-<!-- ** Lightbox Script ** -->
-<script>
-		$(document).on("click", '[data-toggle="lightbox"]', function(event) {
-		  event.preventDefault();
-		  $(this).ekkoLightbox();
-		});
-	</script>
 </body>
 </html>
