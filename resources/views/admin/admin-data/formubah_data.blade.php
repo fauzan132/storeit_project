@@ -32,7 +32,7 @@
 
                   <div class="col-sm-10">
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
-                    <a href="{{ URL::asset("images/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="Flower" style="width:500px">
+                    <a href="{{ URL::asset("images/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:500px">
                     <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid">
                     </a>
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
