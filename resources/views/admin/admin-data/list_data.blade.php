@@ -72,10 +72,10 @@ img {
                     <td>{{ $value->generalIdent }}</td>
                     <td>{{ $value->status }}</td>
                     <td>
-                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn btn-default btn-md" title="Crop Data ini"><i class="fa fa-plus"></i> Lihat</a>
+                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn btn-default btn-md" title="Crop Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
-                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-plus"></i> Crop</a>
+                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-crop"></i> Crop</a>
                     </td>
                     <td>
                         <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>

@@ -32,7 +32,9 @@
 
                   <div class="col-sm-10">
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
-                    <img src="{{ URL::asset("upload/{$data['ImageURL']}") }}" width="256px">
+                    <a href="{{ URL::asset("upload/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery">
+                    <img src="{{ URL::asset("upload/{$data['ImageURL']}") }}" style="width:256px" class="img-fluid">
+                    </a>
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
                     <input type="hidden" name="imageid_raw" value="{{ $data['imageID_raw'] }}">
                     <!-- <input type="file" name="file" class="form-control" id="file"> -->

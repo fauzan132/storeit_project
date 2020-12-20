@@ -39,8 +39,10 @@ img {
             <!-- /.box-header -->
             <div class="box-body">
             <label>Image ID = {{$data->imageID}}</label>
-            <img src="{{ URL::asset("images/{$data->ImageURL}") }}" width="150px"><br>
-            <a href="{{ url('admin-data/index/') }}" class="btn btn-default">Balik Badan Slur</a>
+            <a href="{{ URL::asset("images/{$data->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery">
+          <img src="{{ URL::asset("images/{$data->ImageURL}") }}" width="150px" class="img-fluid">
+        </a><br>
+            <a href="{{ url('admin-data/index/') }}" class="btn btn-default">Kembali ke list data</a>
             <br><br>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -61,7 +63,10 @@ img {
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td><img src="{{ URL::asset("upload/{$value->ImageURL}") }}" width="150px"></td>
+                    <td>
+                    <a href="{{ URL::asset("upload/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $value->plantType }}">
+                    <img src="{{ URL::asset("upload/{$value->ImageURL}") }}" width="150px" class="img-fluid">
+                    </a></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>

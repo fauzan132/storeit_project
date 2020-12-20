@@ -139,6 +139,7 @@ desired effect
         <li class="header">Menu</li>
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href="#"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
         <li><a href="{{ url('admin-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
