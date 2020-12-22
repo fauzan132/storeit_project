@@ -36,6 +36,7 @@
                     <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid" width="600px">
                     </a>
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
+                    <input type="hidden" name="user_id" value="{{ $data['userID'] }}">
                     <!-- <input type="file" name="file" class="form-control" id="file"> -->
                   </div>
                 </div>
@@ -67,13 +68,6 @@
                     <input type="text" name="status" class="form-control" id="status"  value="{{ $data['status'] }}" placeholder="Status ....">
                   </div>
                 </div>
-                <!-- <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Image ID</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="imageid" value="{{ $data['imageID'] }}" disabled class="form-control" id="imageid">
-                  </div>
-                </div> -->
                 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
@@ -82,6 +76,15 @@
                     <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Coment ..." value="{{ $data['ImageComment'] }}">
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Terakhir Diperbaharui Oleh</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="lastupdateby" class="form-control" id="lastupdateby"  value="{{ $data2->name }} - {{ $data2->role }}" disabled>
+                  </div>
+                </div>
+
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">

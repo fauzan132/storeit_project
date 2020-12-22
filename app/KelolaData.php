@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class KelolaData extends Model
 {
@@ -11,6 +12,43 @@ class KelolaData extends Model
     public $incrementing =false;
     public $timestamps=true; 
     protected $fillable = [
-      'imageID','plantType','plantOrgan','generalIdent','status','currentDate','ImageURL','ImageComment', 'updated_at', 'created_at'
+      'imageID','userID','plantType','plantOrgan','generalIdent','status','currentDate','ImageURL','ImageComment','lastUpdateBy','updated_at', 'created_at'
     ];
+
+    public static function getListData(){
+      return $data = DB::table('tb_all_raw_data')
+      ->select('*')
+      ->get();
+    }
+
+    public static function getListDataAll(){
+      return $data = DB::table('tb_all_raw_data')
+      ->join('users', 'tb_all_raw_data.userID','=','users.id')
+      ->select('tb_all_raw_data.*', 'users.*')
+      ->get();
+    }
+
+    public static function getListDataAllById($id){
+      return $data = DB::table('tb_all_raw_data')
+      ->join('users', 'tb_all_raw_data.userID','=','users.id')
+      ->select('tb_all_raw_data.*', 'users.*')
+      ->where('tb_all_raw_data.imageID',$id)
+      ->get();
+    }
+
+    public static function getListDataAllInUpdate($id){
+      return $data = DB::table('tb_all_raw_data')
+      ->join('users', 'tb_all_raw_data.lastUpdateBy','=','users.id')
+      ->select('users.name' , 'users.role')
+      ->where('tb_all_raw_data.imageID',$id)
+      ->first();
+    }
+
+    public static function getListDataAllInUpdate2($id){
+      return $data = DB::table('tb_all_raw_data')
+      ->join('users', 'tb_all_raw_data.userID','=','users.id')
+      ->select('users.name' , 'users.role')
+      ->where('tb_all_raw_data.imageID',$id)
+      ->first();
+    }
 }

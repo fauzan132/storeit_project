@@ -30,6 +30,6 @@ Route::group([
     });
 });
 
-// Route::post('/user/signup', 'API\AuthController@signup');
-// Route::post('/user/login', 'API\AuthController@login');
-// Route::get('/user/logout', 'API\AuthController@logout');
+//API
+Route::get('kelola-data/lihat/', 'API\KelolaDataController@index');
+Route::post('kelola-data/simpan/', 'API\KelolaDataController@store');

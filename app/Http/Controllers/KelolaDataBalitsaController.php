@@ -7,7 +7,7 @@ use App\KelolaDataCrop;
 use Auth;
 use Illuminate\Http\Request;
 
-class KelolaDataController extends Controller
+class KelolaDataBalitsaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +18,14 @@ class KelolaDataController extends Controller
     {
         $id = Auth::user()->id;
         $data = KelolaData::select('*')->where('userID', $id)->get();
-        return view('admin.admin-data.list_data')
+        return view('expert_balitsa.balitsa-data.list_data')
         ->with('data', $data);
     }
 
     public function index_all()
     {
         $data = KelolaData::getListDataAll();
-        return view('admin.admin-data.list_data_all')
+        return view('expert_balitsa.balitsa-data.list_data_all')
         ->with('data', $data);
     }
 
@@ -36,7 +36,7 @@ class KelolaDataController extends Controller
      */
     public function create()
     {
-        return view('admin.admin-data.form_data');
+        return view('expert_balitsa.balitsa-data.form_data');
     }
 
     /**
@@ -69,7 +69,7 @@ class KelolaDataController extends Controller
         $data->lastUpdateBy = $lastupdateby;
 
         $data->save();
-        return redirect('admin-data/index');
+        return redirect('balitsa-data/index');
     }
 
     /**
@@ -83,7 +83,7 @@ class KelolaDataController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
-        return view('admin.admin-data.detail_data')
+        return view('expert_balitsa.balitsa-data.detail_data')
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
@@ -99,7 +99,7 @@ class KelolaDataController extends Controller
     {
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
-        return view('admin.admin-data.formubah_data')
+        return view('expert_balitsa.balitsa-data.formubah_data')
         ->with('data', $data)
         ->with('data2', $data2);
     }
@@ -109,7 +109,7 @@ class KelolaDataController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
-        return view('admin.admin-data.formubah_data_all')
+        return view('expert_balitsa.balitsa-data.formubah_data_all')
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
@@ -144,7 +144,7 @@ class KelolaDataController extends Controller
         $data->lastUpdateBy = $lastupdateby;
 
         $data->save();
-        return redirect('admin-data/index');
+        return redirect('balitsa-data/index');
     }
 
     public function update_all(Request $request, $id)
@@ -169,7 +169,7 @@ class KelolaDataController extends Controller
         $data->lastUpdateBy = $lastupdateby;
 
         $data->save();
-        return redirect('admin-data/index_all');
+        return redirect('balitsa-data/index_all');
     }
 
     /**
@@ -181,20 +181,20 @@ class KelolaDataController extends Controller
     public function destroy($id)
     {
         KelolaData::find($id)->delete();
-        return redirect('admin-data/index');
+        return redirect('balitsa-data/index');
     }
 
     public function destroy_all($id)
     {
         KelolaData::find($id)->delete();
-        return redirect('admin-data/index_all');
+        return redirect('balitsa-data/index_all');
     }
 
     public function cropping($id)
     {
         $data = KelolaData::find($id);
         //print_r($data->imageID);
-        return view('admin.admin-data.cropper')
+        return view('expert_balitsa.balitsa-data.cropper')
         ->with('data', $data);
     }
 

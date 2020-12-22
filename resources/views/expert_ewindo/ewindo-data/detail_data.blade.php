@@ -88,7 +88,7 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('admin-data/index_all/') }}" class="btn btn-primary"><i class="fa fa-save"></i> Kembali</a>
+                  <a href="{{ url('ewindo-data/index_all/') }}" class="btn btn-primary"><i class="fa fa-save"></i> Kembali</a>
                   </div>
                 </div>
               </div>
