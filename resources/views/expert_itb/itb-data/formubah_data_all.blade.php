@@ -55,10 +55,10 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">General Ident</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Symptom Name</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="generalident" class="form-control" id="generalident" value="{{ $data['generalIdent'] }}" placeholder="General Ident ...">
+                    <input type="text" name="symptomName" class="form-control" id="symptomName" value="{{ $data['symptomName'] }}" placeholder="Symptom Name ...">
                   </div>
                 </div>
                 <div class="form-group">

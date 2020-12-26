@@ -11,6 +11,6 @@ class KelolaDataCrop extends Model
     public $incrementing =false;
     public $timestamps=true; 
     protected $fillable = [
-      'imageID','imageID_raw','plantType','plantOrgan','generalIdent','status','currentDate','ImageURL','ImageComment', 'updated_at', 'created_at'
+      'imageID','imageID_raw','plantType','plantOrgan','generalIdent','symptomName','status','currentDate','ImageURL','ImageComment', 'updated_at', 'created_at'
     ];
 }

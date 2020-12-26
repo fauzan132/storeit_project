@@ -49,6 +49,13 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Symptom Name</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="symptomName" class="form-control" id="symptomName" placeholder="Symptom Name ...">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Status</label>
 
                   <div class="col-sm-10">

@@ -49,6 +49,7 @@ class KelolaDataCropITBController extends Controller
         $planttype=$request->input('planttype');
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
+        $symptomname=$request->input('symptomName');
         $status=$request->input('status');
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
@@ -58,6 +59,7 @@ class KelolaDataCropITBController extends Controller
         $data->plantType = $planttype;
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
+        $data->symptomName = $symptomname;
         $data->status = $status;
         $data->ImageURL = $img;
         $data->ImageComment = $imagecomment;

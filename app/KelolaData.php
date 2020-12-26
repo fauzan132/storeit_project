@@ -12,7 +12,7 @@ class KelolaData extends Model
     public $incrementing =false;
     public $timestamps=true; 
     protected $fillable = [
-      'imageID','userID','plantType','plantOrgan','generalIdent','status','currentDate','ImageURL','ImageComment','lastUpdateBy','updated_at', 'created_at'
+      'imageID','userID','plantType','plantOrgan','generalIdent','symptomName','status','currentDate','ImageURL','ImageComment','lastUpdateBy','updated_at', 'created_at'
     ];
 
     public static function getListData(){
