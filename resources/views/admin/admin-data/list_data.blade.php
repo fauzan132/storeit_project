@@ -51,9 +51,9 @@ img {
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
                     <th>General Ident</th>
-                    <th>Status</th>
                     <th>Lihat Data Crop</th>
                     <th>Cropping Data</th>
+                    <th>Lihat Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
                 </tr>
@@ -70,12 +70,14 @@ img {
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
-                    <td>{{ $value->status }}</td>
                     <td>
-                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn btn-default btn-md" title="Crop Data ini"><i class="fa fa-eye"></i> Lihat</a>
+                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn btn-info btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat Crop</a>
                     </td>
                     <td>
                         <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-crop"></i> Crop</a>
+                    </td>
+                    <td>
+                        <a href="{{ url('admin-data/detail', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
                         <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
@@ -93,9 +95,9 @@ img {
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
                     <th>General Ident</th>
-                    <th>Status</th>
                     <th>Lihat Data Crop</th>
                     <th>Cropping Data</th>
+                    <th>Lihat Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
                 </tr>

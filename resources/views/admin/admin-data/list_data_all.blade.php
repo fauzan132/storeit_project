@@ -50,8 +50,8 @@ img {
                     <th>Image</th>
                     <th>Owner</th>
                     <th>Plant Type</th>
-                    <th>Plant Organ</th>
-                    <th>General Ident</th>     
+                    <th>Lihat Data Crop</th>
+                    <th>Crop Data</th>     
                     <th>Lihat Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>
@@ -68,11 +68,14 @@ img {
         </a></td>
                     <td>{{ $value->name }} - {{ $value->role }}</td>
                     <td>{{ $value->plantType }}</td>
-                    <td>{{ $value->plantOrgan }}</td>
-                    <td>{{ $value->generalIdent }}</td>
-                    
                     <td>
-                        <a href="{{ url('admin-data/detail', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
+                        <a href="{{ url('admin-data/crop/awal_all', $value->imageID) }}" class="btn btn-info btn-md" title="Lihat Hasil Crop Data ini"><i class="fa fa-eye"></i> Lihat Crop</a>
+                    </td>
+                    <td>
+                        <a href="{{ url('admin-data/cropping_all', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-crop"></i> Crop</a>
+                    </td>
+                    <td>
+                        <a href="{{ url('admin-data/detail_all', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
                         <a href="{{ url('admin-data/edit_all', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
@@ -87,10 +90,10 @@ img {
                 <tr>
                     <th>No</th>
                     <th>Image</th>
+                    <th>Owner</th>
                     <th>Plant Type</th>
-                    <th>Plant Organ</th>
-                    <th>General Ident</th>
-                    <th>Status</th>
+                    <th>Lihat Data Crop</th>
+                    <th>Crop Data</th>
                     <th>Lihat Data</th>
                     <th>Ubah Data</th>
                     <th>Hapus Data</th>

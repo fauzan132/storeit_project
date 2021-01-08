@@ -68,13 +68,6 @@
                     <input type="text" name="symptomName" class="form-control" id="symptomName" value="{{ $data['symptomName'] }}" placeholder="Symptom Name ...">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Status</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="status" class="form-control" id="status"  value="{{ $data['status'] }}" placeholder="Status ....">
-                  </div>
-                </div>
                 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
@@ -83,10 +76,27 @@
                     <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Coment ..." value="{{ $data['ImageComment'] }}">
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Dicrop Oleh</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="croppedby" class="form-control" id="croppedby"  value="{{ $data3->name }} - {{ $data3->role }}" disabled>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Terakhir Diperbaharui Oleh</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" name="lastupdateby" class="form-control" id="lastupdateby"  value="{{ $data2->name }} - {{ $data2->role }}" disabled>
+                  </div>
+                </div>
+                
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('admin-data/index/') }}" class="btn btn-default"><i class="fa fa-close"></i> Batal</a>
+                  <a href="{{ url('admin-data/crop/awal', $data['imageID_raw']) }}" class="btn btn-default"><i class="fa fa-close"></i> Batal</a>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
                   </div>
                 </div>

@@ -20,7 +20,7 @@
             <!-- /.box-header -->
             <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Detail Data Tanaman Milik [ {{ $data3->name }} - {{ $data3->role }} ]</h3>
+              <h3 class="box-title">Detail Data Tanaman</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -68,13 +68,6 @@
                     <input type="text" name="symptomName" class="form-control" id="symptomName" value="{{ $data['symptomName'] }}" disabled>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Status</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="status" class="form-control" id="status"  value="{{ $data['status'] }}" disabled>
-                  </div>
-                </div>
                 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
@@ -95,7 +88,7 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('admin-data/index_all/') }}" class="btn btn-primary"><i class="fa fa-save"></i> Kembali</a>
+                  <a href="{{ url('admin-data/index/') }}" class="btn btn-primary"><i class="fa fa-save"></i> Kembali</a>
                   </div>
                 </div>
               </div>

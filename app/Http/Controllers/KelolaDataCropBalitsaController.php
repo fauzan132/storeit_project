@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\KelolaData;
 use App\KelolaDataCrop;
+use Auth;
 use Illuminate\Http\Request;
 
 class KelolaDataCropBalitsaController extends Controller
@@ -15,12 +16,42 @@ class KelolaDataCropBalitsaController extends Controller
      */
     public function awal($id)
     {
-        $data = KelolaData::find($id);
-        $data2 = KelolaDataCrop::select('*')->where('imageID_raw', $id)->get();
-        //print_r($data2);
-        return view('expert_balitsa.balitsa-data.crop.list_data_crop')
+        $data = KelolaData::getListDataHeader($id);
+        $data2 = KelolaDataCrop::getListDataAll($id);
+        return view('balitsa.balitsa-data.crop.list_data_crop')
         ->with('data', $data)
         ->with('data2', $data2);
+    }
+
+    public function awal_all($id)
+    {
+        $data = KelolaData::getListDataHeader($id);
+        $data2 = KelolaDataCrop::getListDataAll($id);
+        return view('balitsa.balitsa-data.crop.list_data_crop_all')
+        ->with('data', $data)
+        ->with('data2', $data2);
+    }
+
+    public function show($id)
+    {
+        $data = KelolaDataCrop::find($id);
+        $data2 = KelolaDataCrop::getListDataAllInForm($id);
+        $data3 = KelolaDataCrop::getListDataAllInForm2($id);
+        return view('balitsa.balitsa-data.crop.detail_data_crop')
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3);
+    }
+
+    public function show_all($id)
+    {
+        $data = KelolaDataCrop::find($id);
+        $data2 = KelolaDataCrop::getListDataAllInForm($id);
+        $data3 = KelolaDataCrop::getListDataAllInForm2($id);
+        return view('balitsa.balitsa-data.crop.detail_data_crop_all')
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3);
     }
 
     /**
@@ -32,8 +63,23 @@ class KelolaDataCropBalitsaController extends Controller
     public function edit($id)
     {
         $data = KelolaDataCrop::find($id);
-        return view('expert_balitsa.balitsa-data.crop.formubah_data_crop')
-        ->with('data', $data);
+        $data2 = KelolaDataCrop::getListDataAllInForm($id);
+        $data3 = KelolaDataCrop::getListDataAllInForm2($id);
+        return view('balitsa.balitsa-data.crop.formubah_data_crop')
+        ->with('data', $data)
+        ->with('data3', $data3)
+        ->with('data2', $data2);
+    }
+
+    public function edit_all($id)
+    {
+        $data = KelolaDataCrop::find($id);
+        $data2 = KelolaDataCrop::getListDataAllInForm($id);
+        $data3 = KelolaDataCrop::getListDataAllInForm2($id);
+        return view('balitsa.balitsa-data.crop.formubah_data_crop_all')
+        ->with('data', $data)
+        ->with('data3', $data3)
+        ->with('data2', $data2);
     }
 
     /**
@@ -46,11 +92,11 @@ class KelolaDataCropBalitsaController extends Controller
     public function update(Request $request, $id)
     {
         $imageid_raw = $request->imageid_raw;
+        $lastupdateby = Auth::user()->id;
         $planttype=$request->input('planttype');
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
         $symptomname=$request->input('symptomName');
-        $status=$request->input('status');
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
         
@@ -60,12 +106,37 @@ class KelolaDataCropBalitsaController extends Controller
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
         $data->symptomName = $symptomname;
-        $data->status = $status;
         $data->ImageURL = $img;
         $data->ImageComment = $imagecomment;
+        $data->lastUpdatedBy = $lastupdateby;
 
         $data->save();
         return redirect('balitsa-data/crop/awal/'. $imageid_raw);
+    }
+
+    public function update_all(Request $request, $id)
+    {
+        $imageid_raw = $request->imageid_raw;
+        $lastupdateby = Auth::user()->id;
+        $planttype=$request->input('planttype');
+        $plantorgan=$request->input('plantorgan');
+        $generalident=$request->input('generalident');
+        $symptomname=$request->input('symptomName');
+        $imagecomment=$request->input('imagecomment');
+        $img = $request->tmp_image;
+        
+        $data = KelolaDataCrop::where('imageID', $id)->first();
+        $data->imageID_raw = $imageid_raw;
+        $data->plantType = $planttype;
+        $data->plantOrgan = $plantorgan;
+        $data->generalIdent = $generalident;
+        $data->symptomName = $symptomname;
+        $data->ImageURL = $img;
+        $data->ImageComment = $imagecomment;
+        $data->lastUpdatedBy = $lastupdateby;
+
+        $data->save();
+        return redirect('balitsa-data/crop/awal_all/'. $imageid_raw);
     }
 
     /**
@@ -79,5 +150,12 @@ class KelolaDataCropBalitsaController extends Controller
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
         return redirect('balitsa-data/crop/awal/'. $image_raw);
+    }
+
+    public function destroy_all($id)
+    {
+        $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
+        KelolaDataCrop::find($id)->delete();
+        return redirect('balitsa-data/crop/awal_all/'. $image_raw);
     }
 }

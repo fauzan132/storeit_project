@@ -51,9 +51,9 @@ img {
                     <th>Image</th>
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
-                    <th>General Ident</th>
-                    <th>Status</th>
-                    <th>Tambah Label</th>
+                    <th>Cropped By</th>
+                    <th>Perbaharui Label</th>
+                    <th>Lihat Data</th>
                     <th>Hapus Data</th>
                 </tr>
                 </thead>
@@ -69,10 +69,12 @@ img {
                     </a></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
-                    <td>{{ $value->generalIdent }}</td>
-                    <td>{{ $value->status }}</td>
+                    <td>{{ $value->name }} - {{ $value->role }}</td>
                     <td>
-                        <a href="{{ url('admin-data/crop/edit', $value->imageID) }}" class="btn btn-success btn-md" title="Ubah Data ini"><i class="fa fa-plus"></i> Tambah</a>
+                        <a href="{{ url('admin-data/crop/edit', $value->imageID) }}" class="btn btn-success btn-md" title="Ubah Data ini"><i class="fa fa-plus"></i> Perbaharui</a>
+                    </td>
+                    <td>
+                        <a href="{{ url('admin-data/crop/detail', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
                         <a href="{{ url('admin-data/crop/hapus', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
@@ -86,9 +88,9 @@ img {
                     <th>Image</th>
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
-                    <th>General Ident</th>
-                    <th>Status</th>
-                    <th>Tambah Label</th>
+                    <th>Cropped By</th>
+                    <th>Perbaharui Label</th>
+                    <th>Lihat Data</th>
                     <th>Hapus Data</th>
                 </tr>
                 </tfoot>

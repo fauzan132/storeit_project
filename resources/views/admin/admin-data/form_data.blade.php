@@ -55,13 +55,7 @@
                     <input type="text" name="generalident" class="form-control" id="generalident" placeholder="General Ident ...">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Status</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="status" class="form-control" id="status" placeholder="Status ....">
-                  </div>
-                </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
 

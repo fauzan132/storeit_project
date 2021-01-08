@@ -18,14 +18,14 @@ class KelolaDataEwindoController extends Controller
     {
         $id = Auth::user()->id;
         $data = KelolaData::select('*')->where('userID', $id)->get();
-        return view('expert_ewindo.ewindo-data.list_data')
+        return view('ewindo.ewindo-data.list_data')
         ->with('data', $data);
     }
 
     public function index_all()
     {
-        $data = KelolaData::getListDataAll();
-        return view('expert_ewindo.ewindo-data.list_data_all')
+        $data = KelolaData::getListDataAllEwindo();
+        return view('ewindo.ewindo-data.list_data_all')
         ->with('data', $data);
     }
 
@@ -36,7 +36,7 @@ class KelolaDataEwindoController extends Controller
      */
     public function create()
     {
-        return view('expert_ewindo.ewindo-data.form_data');
+        return view('ewindo.ewindo-data.form_data');
     }
 
     /**
@@ -53,7 +53,6 @@ class KelolaDataEwindoController extends Controller
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
         $symptomname=$request->input('symptomName');
-        $status=$request->input('status');
         $imagecomment=$request->input('imagecomment');
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
@@ -65,7 +64,6 @@ class KelolaDataEwindoController extends Controller
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
         $data->symptomName = $symptomname;
-        $data->status = $status;
         $data->ImageURL = $filename;
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
@@ -85,7 +83,18 @@ class KelolaDataEwindoController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
-        return view('expert_ewindo.ewindo-data.detail_data')
+        return view('ewindo.ewindo-data.detail_data')
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3);
+    }
+
+    public function show_all($id)
+    {
+        $data = KelolaData::find($id);
+        $data2 = KelolaData::getListDataAllInUpdate($id);
+        $data3 = KelolaData::getListDataAllInUpdate2($id);
+        return view('ewindo.ewindo-data.detail_data_all')
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
@@ -101,7 +110,7 @@ class KelolaDataEwindoController extends Controller
     {
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
-        return view('expert_ewindo.ewindo-data.formubah_data')
+        return view('ewindo.ewindo-data.formubah_data')
         ->with('data', $data)
         ->with('data2', $data2);
     }
@@ -111,7 +120,7 @@ class KelolaDataEwindoController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
-        return view('expert_ewindo.ewindo-data.formubah_data_all')
+        return view('ewindo.ewindo-data.formubah_data_all')
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
@@ -132,7 +141,6 @@ class KelolaDataEwindoController extends Controller
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
         $symptomname=$request->input('symptomName');
-        $status=$request->input('status');
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
         
@@ -142,7 +150,6 @@ class KelolaDataEwindoController extends Controller
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
         $data->symptomName = $symptomname;
-        $data->status = $status;
         $data->ImageURL = $img;
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
@@ -159,7 +166,6 @@ class KelolaDataEwindoController extends Controller
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
         $symptomname=$request->input('symptomName');
-        $status=$request->input('status');
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
         
@@ -169,7 +175,6 @@ class KelolaDataEwindoController extends Controller
         $data->plantOrgan = $plantorgan;
         $data->generalIdent = $generalident;
         $data->symptomName = $symptomname;
-        $data->status = $status;
         $data->ImageURL = $img;
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
@@ -200,7 +205,14 @@ class KelolaDataEwindoController extends Controller
     {
         $data = KelolaData::find($id);
         //print_r($data->imageID);
-        return view('expert_ewindo.ewindo-data.cropper')
+        return view('ewindo.ewindo-data.cropper')
+        ->with('data', $data);
+    }
+    public function cropping_all($id)
+    {
+        $data = KelolaData::find($id);
+        //print_r($data->imageID);
+        return view('ewindo.ewindo-data.cropper_all')
         ->with('data', $data);
     }
 
@@ -215,9 +227,36 @@ class KelolaDataEwindoController extends Controller
         $file = $folderPath . $temp;
         file_put_contents($file, $image_base64);
 
+        $user_id = Auth::user()->id;
+
         $data=new KelolaDataCrop();
         $data->imageID_raw = $id;
         $data->ImageURL = $temp;
+        $data->croppedBy = $user_id;
+        $data->lastUpdatedBy = $user_id;
+        $data->save();
+
+        return response()->json(['success'=>'success']);
+    }
+
+    public function upload_all(Request $request,$id)
+    {
+        $folderPath = public_path('upload/');
+        $image_parts = explode(";base64,", $request->image);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $temp = uniqid() . '.png';
+        $file = $folderPath . $temp;
+        file_put_contents($file, $image_base64);
+
+        $user_id = Auth::user()->id;
+
+        $data=new KelolaDataCrop();
+        $data->imageID_raw = $id;
+        $data->ImageURL = $temp;
+        $data->croppedBy = $user_id;
+        $data->lastUpdatedBy = $user_id;
         $data->save();
 
         return response()->json(['success'=>'success']);
