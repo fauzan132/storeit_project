@@ -181,3 +181,19 @@ Route::get('itb-data/crop/detail_all/{id}', 'KelolaDataCropITBController@show_al
 Route::get('itb-data/crop/edit_all/{id}', 'KelolaDataCropITBController@edit_all');
 Route::post('itb-data/crop/update_all/{id}', 'KelolaDataCropITBController@update_all');
 Route::get('itb-data/crop/hapus_all/{id}', 'KelolaDataCropITBController@destroy_all');
+
+//Kelola User
+Route::get('admin/user/index/', 'UserController@index');
+Route::get('admin/user/create/', 'UserController@create');
+Route::post('admin/user/simpan/', 'UserController@store');
+Route::get('admin/user/detail/{id}', 'UserController@show');
+Route::get('admin/user/edit/{id}', 'UserController@edit');
+Route::post('admin/user/update/{id}', 'UserController@update');
+Route::get('admin/user/hapus/{id}', 'UserController@destroy');
+
+//Kelola Profile
+Route::get('profile/index/', 'UserController@profile');
+Route::get('profile/edit/{id}', 'UserController@edit_profile');
+Route::post('profile/update/{id}', 'UserController@ubah_profile');
+Route::get('profile/edit_login/{id}', 'UserController@edit_login');
+Route::post('profile/update_login/{id}', 'UserController@ubah_login');
