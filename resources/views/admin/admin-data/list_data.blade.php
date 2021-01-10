@@ -69,8 +69,8 @@ img {
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
                     <td>
-                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn bg-navy btn-flat" title="Lihat Data Crop"><i class="fa fa-eye"></i> Lihat Data Crop</a><br><br>
-                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn bg-olive btn-flat" title="Crop Gambar ini"><i class="fa fa-crop"></i> Crop Gambar</a>
+                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn bg-olive btn-flat" title="Lihat Data Crop"><i class="fa fa-eye"></i> Lihat Data Crop</a><br><br>
+                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn bg-navy btn-flat" title="Crop Gambar ini"><i class="fa fa-crop"></i> Crop Gambar</a>
                     </td>
                     <td>
                         <a href="{{ url('admin-data/detail', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
