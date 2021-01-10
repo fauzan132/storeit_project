@@ -46,7 +46,7 @@
                   <div class="col-sm-10">
                     <!-- data Gambar hasil crop belum dimuncul kan -->
                     <a href="{{ URL::asset("images/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:500px">
-                      <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid" width="600px">
+                      <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid" width="600px"></a>
                   </div>
                 </div>
                 <div class="form-group">
