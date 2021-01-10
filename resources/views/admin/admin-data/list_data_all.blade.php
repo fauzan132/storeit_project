@@ -43,6 +43,28 @@ img {
             <!-- /.box-header -->
             <div class="box-body">
             <a href="{{ url('admin-data/create') }}"><button type="button" class="btn btn-primary btn-flat btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
+              <!-- form start -->
+              <form class="form-horizontal" method="POST" action="#" enctype="multipart/form-data">
+              {{ csrf_field() }}
+                <div class="box-body">
+                  <div class="form-group">
+                  <div class="col-sm-3">
+                    <label for="inputEmail3">Tampilkan Berdasarkan : </label>
+                      <select class="form-control">
+                        <option>- Pilih -</option>
+                        <option>Plant Type</option>
+                        <option>Plant Organ</option>
+                        <option>General Ident</option>
+                      </select>
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                  <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
