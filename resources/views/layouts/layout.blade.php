@@ -138,10 +138,11 @@ desired effect
       
       @if(Auth::user()->role=="Admin")
         <ul class="sidebar-menu">
+          <li class="header">Akun</li>
+          <li><a href="{{ url('profile/index') }}"><i class="fa fa-user"></i> <span>Profil Pengguna</span></a></li>
           <li class="header">Menu</li>
           <!-- Optionally, you can add icons to the links -->
           <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-          <li><a href="{{ url('profile/index') }}"><i class="fa fa-user"></i> <span>Informasi Pengguna</span></a></li>
           <li><a href="{{ url('admin/user/index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
           <li><a href="{{ url('admin-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
           <li><a href="{{ url('admin-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman All User</span></a></li>

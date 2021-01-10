@@ -88,7 +88,8 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('admin-data/index/') }}" class="btn btn-primary"><i class="fa fa-save"></i> Kembali</a>
+                  <a href="{{ url('admin-data/index/') }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left" title="Kembali"></i> Kembali</a>
+                  <a href="{{ url('admin-data/edit', $data->imageID) }}" class="btn bg-orange btn-flat"><i class="fa fa-edit" title="Ubah Data ini"></i> Ubah Data</a>
                   </div>
                 </div>
               </div>

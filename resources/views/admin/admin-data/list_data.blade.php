@@ -51,10 +51,8 @@ img {
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
                     <th>General Ident</th>
-                    <th>Lihat Data Crop</th>
                     <th>Cropping Data</th>
-                    <th>Lihat Data</th>
-                    <th>Ubah Data</th>
+                    <th>Lihat Metadata</th>
                     <th>Hapus Data</th>
                 </tr>
                 </thead>
@@ -71,19 +69,14 @@ img {
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
                     <td>
-                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn btn-info btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat Crop</a>
+                        <a href="{{ url('admin-data/crop/awal', $value->imageID) }}" class="btn bg-navy btn-flat" title="Lihat Data Crop"><i class="fa fa-eye"></i> Lihat Data Crop</a><br><br>
+                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn bg-olive btn-flat" title="Crop Gambar ini"><i class="fa fa-crop"></i> Crop Gambar</a>
                     </td>
                     <td>
-                        <a href="{{ url('admin-data/cropping', $value->imageID) }}" class="btn btn-success btn-md" title="Crop Data ini"><i class="fa fa-crop"></i> Crop</a>
+                        <a href="{{ url('admin-data/detail', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
-                        <a href="{{ url('admin-data/detail', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
-                    </td>
-                    <td>
-                        <a href="{{ url('admin-data/edit', $value->imageID) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
-                    </td>
-                    <td>
-                        <a href="{{ url('admin-data/hapus', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
+                        <a href="{{ url('admin-data/hapus', $value->imageID) }}" class="btn bg-maroon btn-flat" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
                     </td>
                 </tr>
                 @endforeach
@@ -95,10 +88,8 @@ img {
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
                     <th>General Ident</th>
-                    <th>Lihat Data Crop</th>
                     <th>Cropping Data</th>
-                    <th>Lihat Data</th>
-                    <th>Ubah Data</th>
+                    <th>Lihat Metadata</th>
                     <th>Hapus Data</th>
                 </tr>
                 </tfoot>
