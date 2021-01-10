@@ -42,7 +42,7 @@ img {
             
             <!-- /.box-header -->
             <div class="box-body">
-            <a href="{{ url('admin/user/create') }}"><button type="button" class="btn btn-primary btn-md"><i class="fa fa-plus"></i> Tambah Data User</button></a><br><br>
+            <a href="{{ url('admin/user/create') }}"><button type="button" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> Tambah Data User</button></a><br><br>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -65,13 +65,13 @@ img {
                 <td>{{ $value->email }}</td>
                 <td>{{ $value->role }}</td>
                 <td>
-                    <a href="{{ url('admin/user/detail', $value->id) }}" class="btn btn-success btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
+                    <a href="{{ url('admin/user/detail', $value->id) }}" class="btn bg-olive btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                 </td>
                 <td>
-                    <a href="{{ url('admin/user/edit', $value->id) }}" class="btn btn-warning btn-md" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
+                    <a href="{{ url('admin/user/edit', $value->id) }}" class="btn bg-orange btn-flat" title="Ubah Data ini"><i class="fa fa-edit"></i> Ubah</a>
                 </td>
                 <td>
-                    <a href="{{ url('admin/user/hapus', $value->id) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
+                    <a href="{{ url('admin/user/hapus', $value->id) }}" class="btn bg-maroon btn-flat" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
                 </td>
                 </tr>
                 @endforeach

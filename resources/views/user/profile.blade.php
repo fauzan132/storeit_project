@@ -59,8 +59,8 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('profile/edit', Auth::user()->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Ubah Data Profile</a>
-                  <a href="{{ url('profile/edit_login', Auth::user()->id) }}" class="btn btn-default"><i class="fa fa-edit"></i> Ubah Data Login</a>
+                  <a href="{{ url('profile/edit', Auth::user()->id) }}" class="btn bg-orange btn-flat"><i class="fa fa-edit"></i> Ubah Data Profile</a>
+                  <a href="{{ url('profile/edit_login', Auth::user()->id) }}" class="btn btn-default btn-flat"><i class="fa fa-edit"></i> Ubah Data Login</a>
                   </div>
                 </div>
               </div>

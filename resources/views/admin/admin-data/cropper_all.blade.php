@@ -51,7 +51,7 @@ img {
       </div>
       <div class="modal-footer">
         <a class="btn btn-secondary" href="{{ url('admin-data/index_all/') }}">Cancel</a>
-        <button type="button" class="btn btn-primary" id="crop">Crop</button>
+        <button type="button" class="btn bg-navy btn-flat" id="crop">Crop</button>
       </div>
     </div>
   </div>
