@@ -21,7 +21,7 @@
         <div class="callout callout-info">
             <h4>Selamat Datang</h4>
 
-            <p>Selamat Datang dihalaman panel {{ Auth::user->role }}!, Silahkan pilih menu Data Tanaman untuk mengelola data tanaman.</p>
+            <p>Selamat Datang dihalaman panel {{ Auth::user()->role }}!, Silahkan pilih menu Data Tanaman untuk mengelola data tanaman.</p>
         </div>
         
             
