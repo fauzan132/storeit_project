@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\KelolaData;
 use App\KelolaDataCrop;
+use App\PlantTypeModel;
+use App\GeneralIdentModel;
+use App\SymptomNameModel;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -36,7 +39,8 @@ class KelolaDataController extends Controller
      */
     public function create()
     {
-        return view('tanaman.tanaman-data.form_data');
+        $planttype = PlantTypeModel::get();
+        return view('tanaman.tanaman-data.form_data')->with('planttype', $planttype);
     }
 
     /**
@@ -47,12 +51,16 @@ class KelolaDataController extends Controller
      */
     public function store(Request $request)
     {
+        $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
+        $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+        $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+
         $userid = Auth::user()->id;
         $lastupdateby = Auth::user()->id;
-        $planttype=$request->input('planttype');
+        $planttype=$plant;
         $plantorgan=$request->input('plantorgan');
-        $generalident=$request->input('generalident');
-        $symptomname=$request->input('symptomName');
+        $generalident=$general;
+        $symptomname=$symptom;
         $imagecomment=$request->input('imagecomment');
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
@@ -135,12 +143,22 @@ class KelolaDataController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->input('tmp_plant') == null && $request->input('tmp_general') == null && $request->input('tmp_symptom') == null){
+            $plant = $request->input('planttype');
+            $general = $request->input('generalident');
+            $symptom = $request->input('symptomname');
+        } else{
+            $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
+            $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+            $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+        }
+        
         $userid = $request->user_id;
         $lastupdateby = Auth::user()->id;
-        $planttype=$request->input('planttype');
+        $planttype= $plant;
         $plantorgan=$request->input('plantorgan');
-        $generalident=$request->input('generalident');
-        $symptomname=$request->input('symptomName');
+        $generalident= $general;
+        $symptomname=$symptom;
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
         
@@ -165,7 +183,7 @@ class KelolaDataController extends Controller
         $planttype=$request->input('planttype');
         $plantorgan=$request->input('plantorgan');
         $generalident=$request->input('generalident');
-        $symptomname=$request->input('symptomName');
+        $symptomname=$request->input('symptomname');
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
         

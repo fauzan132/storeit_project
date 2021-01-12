@@ -41,33 +41,51 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="planttype" class="form-control" id="planttype" value="{{ $data['plantType'] }}" placeholder="Plant Type ...">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
+                    <div class="col-sm-10">
+                      <select id="planttype" name="planttype" class="form-control">
+                        <option value="{{ $data['plantType'] }}" selected>{{ $data['plantType'] }}</option>
+                        <option value="">-------------------</option>
+                        <option value="">Pilih Plant Type</option>
+                        <option value="01">Chilli</option>
+                        <option value="02">Tomato</option>
+                        <option value="03">Other</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Plant Organ</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="plantorgan" class="form-control" id="plantorgan" value="{{ $data['plantOrgan'] }}" placeholder="Plant Organ ...">
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Plant Organ</label>
+                    <div class="col-sm-10">
+                      <select id="plantorgan" name="plantorgan" class="form-control">
+                        <option value="">Pilih Plant Organ</option>
+                        <option value="Fruit" <?php if($data['plantOrgan']== "Fruit"){ echo"selected"; } ?>>Fruit</option>
+                        <option value="Flower" <?php if($data['plantOrgan']== "Flower"){ echo"selected"; } ?>>Flower</option>
+                        <option value="Leaf" <?php if($data['plantOrgan']== "Leaf"){ echo"selected"; } ?>>Leaf</option>
+                        <option value="Stem" <?php if($data['plantOrgan']== "Stem"){ echo"selected"; } ?>>Stem</option>
+                        <option value="Root" <?php if($data['plantOrgan']== "Root"){ echo"selected"; } ?>>Root</option>
+                        <option value="Other" <?php if($data['plantOrgan']== "Other"){ echo"selected"; } ?>>Other</option>
+                      </select>
+                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">General Ident</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="generalident" class="form-control" id="generalident" value="{{ $data['generalIdent'] }}" placeholder="General Ident ...">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">General Ident</label>
+                    <div class="col-sm-10">
+                      <select id="generalident" name="generalident" class="form-control">
+                        <option value="{{ $data['generalIdent'] }}" selected>{{ $data['generalIdent'] }}</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Symptom Name</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="symptomName" class="form-control" id="symptomName" value="{{ $data['symptomName'] }}" placeholder="Symptom Name ...">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Symptom Name</label>
+                    <div class="col-sm-10">
+                      <select id="symptomname" name="symptomname" class="form-control">
+                      <option value="{{ $data['symptomName'] }}" selected>{{ $data['symptomName'] }}</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
                 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
@@ -84,6 +102,10 @@
                     <input type="text" name="lastupdateby" class="form-control" id="lastupdateby"  value="{{ $data2->name }} - {{ $data2->role }}" disabled>
                   </div>
                 </div>
+
+                <input type="hidden" name="tmp_plant" class="form-control" id="tmp_plant">
+                <input type="hidden" name="tmp_general" class="form-control" id="tmp_general">
+                <input type="hidden" name="tmp_symptom" class="form-control" id="tmp_symptom">
 
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
@@ -107,4 +129,60 @@
       </div>
       <!-- /.row (main row) -->
 </section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script><script>
+    $(document).ready(function () {
+        $("#planttype").change(function () {
+            var id_plant_type = $(this).val();
+            axios.get('/dropdown/general-ident/' + id_plant_type).then(resp => {
+                var tmp_data = JSON.stringify(resp.data);
+                var result = tmp_data.toString();
+                $("select#generalident").html(result);
+                var _options = ""
+                var tmp_data = JSON.parse(result)
+                _options += ('<option value=""> Pilih General Ident </option>');
+                $.each(tmp_data, function (i, value) {
+                    _options += ('<option value="' + value.id + '">' + value
+                        .nama_general_ident + '</option>');
+                });
+                $('#generalident').append(_options);
+            });
+        });
+    });
+    $(document).ready(function () {
+        $("#generalident").change(function () {
+            var id_general_ident = $(this).val();
+            axios.get('/dropdown/symptom-name/' + id_general_ident).then(resp => {
+                var tmp_data = JSON.stringify(resp.data);
+                var result = tmp_data.toString();
+                $("select#symptomname").html(result);
+                var _options = ""
+                var tmp_data = JSON.parse(result)
+                _options += ('<option value=""> Pilih Symptom Name </option>');
+                $.each(tmp_data, function (i, value) {
+                    _options += ('<option value="' + value.id + '">' + value
+                        .nama_symptom_name + '</option>');
+                });
+                $('#symptomname').append(_options);
+            });
+        });
+    });
+
+</script>
+
+<script>
+    $("#planttype").change(function () {
+        var planttype = $(this).val();
+        document.getElementById('tmp_plant').value = planttype;
+    });
+    $("#generalident").change(function () {
+        var generalident = $(this).val();
+        document.getElementById('tmp_general').value = generalident;
+    });
+    $("#symptomname").change(function () {
+        var symptomname = $(this).val();
+        document.getElementById('tmp_symptom').value = symptomname;
+    });
+</script>
 @endsection

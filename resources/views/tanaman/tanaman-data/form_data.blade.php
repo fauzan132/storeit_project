@@ -28,55 +28,74 @@
             {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
-
-                  <div class="col-sm-10">
-                    <input type="text" name="planttype" class="form-control" id="planttype" placeholder="Plant Type ...">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Plant Type</label>
+                    <div class="col-sm-10">
+                      <select id="planttype" name="planttype" class="form-control">
+                        <option value="">Pilih Plant Type</option>
+                        @foreach($planttype as $row)
+                          <option value="{{ $row->id}}">{{ $row->nama_plant_type }}</option>
+                        @endforeach
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Plant Organ</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="plantorgan" class="form-control" id="plantorgan" placeholder="Plant Organ ...">
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Plant Organ</label>
+                    <div class="col-sm-10">
+                      <select id="plantorgan" name="plantorgan" class="form-control">
+                        <option value="">Pilih Plant Organ</option>
+                        <option value="Fruit">Fruit</option>
+                        <option value="Flower">Flower</option>
+                        <option value="Leaf">Leaf</option>
+                        <option value="Stem">Stem</option>
+                        <option value="Root">Root</option>
+                        <option value="Other">Other</option>
+                      </select>
+                     </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Symptom Name</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="symptomName" class="form-control" id="symptomName" placeholder="Symptom Name ...">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">General Ident</label>
+                    <div class="col-sm-10">
+                      <select id="generalident" name="generalident" class="form-control">
+                        <option value="">Pilih General Ident</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">General Ident</label>
 
-                  <div class="col-sm-10">
-                    <input type="text" name="generalident" class="form-control" id="generalident" placeholder="General Ident ...">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Symptom Name</label>
+                    <div class="col-sm-10">
+                      <select id="symptomname" name="symptomname" class="form-control">
+                        <option value="">Pilih Symptom Name</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
 
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
+                    <div class="col-sm-10">
+                      <input type="file" name="file" class="form-control" id="file" required>
+                    </div>
+                  </div>
 
-                  <div class="col-sm-10">
-                    <input type="file" name="file" class="form-control" id="file">
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
+                    <div class="col-sm-10">
+                      <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Comment ...">
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Image Comment</label>
+                  <!-- <input type="text" name="tmp_plant" class="form-control" id="tmp_plant">
+                  <input type="text" name="tmp_general" class="form-control" id="tmp_general">
+                  <input type="text" name="tmp_symptom" class="form-control" id="tmp_symptom"> -->
 
-                  <div class="col-sm-10">
-                    <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Coment ...">
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                      <a href="{{ url('tanaman-data/index/') }}" class="btn btn-default btn-flat"><i class="fa fa-close"></i> Batal</a>
+                      <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Simpan</button>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label"></label>
-                  <div class="col-sm-10">
-                  <a href="{{ url('tanaman-data/index/') }}" class="btn btn-default btn-flat"><i class="fa fa-close"></i> Batal</a>
-                <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Simpan</button>
-                  </div>
-                </div>
               </div>
               <div class="box-footer">
               
@@ -92,4 +111,60 @@
       </div>
       <!-- /.row (main row) -->
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script><script>
+    $(document).ready(function () {
+        $("#planttype").change(function () {
+            var id_plant_type = $(this).val();
+            axios.get('/dropdown/general-ident/' + id_plant_type).then(resp => {
+                var tmp_data = JSON.stringify(resp.data);
+                var result = tmp_data.toString();
+                $("select#generalident").html(result);
+                var _options = ""
+                var tmp_data = JSON.parse(result)
+                _options += ('<option value=""> Pilih General Ident </option>');
+                $.each(tmp_data, function (i, value) {
+                    _options += ('<option value="' + value.id + '">' + value
+                        .nama_general_ident + '</option>');
+                });
+                $('#generalident').append(_options);
+            });
+        });
+    });
+    $(document).ready(function () {
+        $("#generalident").change(function () {
+            var id_general_ident = $(this).val();
+            axios.get('/dropdown/symptom-name/' + id_general_ident).then(resp => {
+                var tmp_data = JSON.stringify(resp.data);
+                var result = tmp_data.toString();
+                $("select#symptomname").html(result);
+                var _options = ""
+                var tmp_data = JSON.parse(result)
+                _options += ('<option value=""> Pilih Symptom Name </option>');
+                $.each(tmp_data, function (i, value) {
+                    _options += ('<option value="' + value.id + '">' + value
+                        .nama_symptom_name + '</option>');
+                });
+                $('#symptomname').append(_options);
+            });
+        });
+    });
+
+</script>
+<!-- 
+<script>
+    $("#planttype").change(function () {
+        var planttype = $(this).val();
+        document.getElementById('tmp_plant').value = planttype;
+    });
+    $("#generalident").change(function () {
+        var generalident = $(this).val();
+        document.getElementById('tmp_general').value = generalident;
+    });
+    $("#symptomname").change(function () {
+        var symptomname = $(this).val();
+        document.getElementById('tmp_symptom').value = symptomname;
+    });
+</script> -->
+
 @endsection

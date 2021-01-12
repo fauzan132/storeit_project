@@ -37,6 +37,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 
+//Dropdown
+Route::get('dropdown/plant-type', 'DropDownController@selectPlantType');
+Route::get('dropdown/general-ident/{id}', 'DropDownController@selectGeneralIdent');
+Route::get('dropdown/symptom-name/{id}', 'DropDownController@selectSymptomName');
+
 //Kelola Data by tanaman
 Route::get('tanaman-data/index/', 'KelolaDataController@index');
 Route::get('tanaman-data/create/', 'KelolaDataController@create');
