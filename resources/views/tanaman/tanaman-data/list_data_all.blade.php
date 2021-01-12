@@ -72,6 +72,7 @@ img {
                     <th>Image</th>
                     <th>Owner</th>
                     <th>Plant Type</th>
+                    <th>Waktu Upload</th>
                     <th>Crop Data</th>     
                     <th>Lihat Metadata</th>
                     <th>Hapus Data</th>
@@ -88,6 +89,7 @@ img {
         </a></td>
                     <td>{{ $value->name }} - {{ $value->role }}</td>
                     <td>{{ $value->plantType }}</td>
+                    <td>{{ $value->created_at }}</td>
                     <td>
                         <a href="{{ url('tanaman-data/crop/awal_all', $value->imageID) }}" class="btn bg-olive btn-flat" title="Lihat Hasil Crop Data ini"><i class="fa fa-eye"></i> Lihat Data Crop</a><br><br>
                         <a href="{{ url('tanaman-data/cropping_all', $value->imageID) }}" class="btn bg-navy btn-flat" title="Crop Data ini"><i class="fa fa-crop"></i> Crop</a>
@@ -107,6 +109,7 @@ img {
                     <th>Image</th>
                     <th>Owner</th>
                     <th>Plant Type</th>
+                    <th>Waktu Upload</th>
                     <th>Crop Data</th>
                     <th>Lihat Metadata</th>
                     <th>Hapus Data</th>
