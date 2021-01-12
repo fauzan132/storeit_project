@@ -72,7 +72,8 @@ img {
                     <th>Image</th>
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
-                    <th>General Ident</th>
+                    <th>Symptom Identification</th>
+                    <th>Waktu Upload</th>
                     <th>Cropping Data</th>
                     <th>Lihat Metadata</th>
                     <th>Hapus Data</th>
@@ -90,9 +91,10 @@ img {
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
                     <td>{{ $value->generalIdent }}</td>
+                    <td>{{ $value->created_at }}</td>
                     <td>
                         <a href="{{ url('tanaman-data/crop/awal', $value->imageID) }}" class="btn bg-olive btn-flat" title="Lihat Data Crop"><i class="fa fa-eye"></i> Lihat Data Crop</a><br><br>
-                        <a href="{{ url('tanaman-data/cropping', $value->imageID) }}" class="btn bg-navy btn-flat" title="Crop Gambar ini"><i class="fa fa-crop"></i> Crop Gambar</a>
+                        <a href="{{ url('tanaman-data/cropping', $value->imageID) }}" class="btn btn-primary btn-flat" title="Crop Gambar ini"><i class="fa fa-crop"></i> Crop Gambar</a>
                     </td>
                     <td>
                         <a href="{{ url('tanaman-data/detail', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
@@ -109,7 +111,8 @@ img {
                     <th>Image</th>
                     <th>Plant Type</th>
                     <th>Plant Organ</th>
-                    <th>General Ident</th>
+                    <th>Symptom Identification</th>
+                    <th>Tanggal Upload</th>
                     <th>Cropping Data</th>
                     <th>Lihat Metadata</th>
                     <th>Hapus Data</th>
