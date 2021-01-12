@@ -18,7 +18,7 @@ class KelolaDataCropController extends Controller
     {
         $data = KelolaData::getListDataHeader($id);
         $data2 = KelolaDataCrop::getListDataAll($id);
-        return view('admin.admin-data.crop.list_data_crop')
+        return view('tanaman.tanaman-data.crop.list_data_crop')
         ->with('data', $data)
         ->with('data2', $data2);
     }
@@ -27,7 +27,7 @@ class KelolaDataCropController extends Controller
     {
         $data = KelolaData::getListDataHeader($id);
         $data2 = KelolaDataCrop::getListDataAll($id);
-        return view('admin.admin-data.crop.list_data_crop_all')
+        return view('tanaman.tanaman-data.crop.list_data_crop_all')
         ->with('data', $data)
         ->with('data2', $data2);
     }
@@ -37,7 +37,7 @@ class KelolaDataCropController extends Controller
         $data = KelolaDataCrop::find($id);
         $data2 = KelolaDataCrop::getListDataAllInForm($id);
         $data3 = KelolaDataCrop::getListDataAllInForm2($id);
-        return view('admin.admin-data.crop.detail_data_crop')
+        return view('tanaman.tanaman-data.crop.detail_data_crop')
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
@@ -48,7 +48,7 @@ class KelolaDataCropController extends Controller
         $data = KelolaDataCrop::find($id);
         $data2 = KelolaDataCrop::getListDataAllInForm($id);
         $data3 = KelolaDataCrop::getListDataAllInForm2($id);
-        return view('admin.admin-data.crop.detail_data_crop_all')
+        return view('tanaman.tanaman-data.crop.detail_data_crop_all')
         ->with('data', $data)
         ->with('data2', $data2)
         ->with('data3', $data3);
@@ -65,7 +65,7 @@ class KelolaDataCropController extends Controller
         $data = KelolaDataCrop::find($id);
         $data2 = KelolaDataCrop::getListDataAllInForm($id);
         $data3 = KelolaDataCrop::getListDataAllInForm2($id);
-        return view('admin.admin-data.crop.formubah_data_crop')
+        return view('tanaman.tanaman-data.crop.formubah_data_crop')
         ->with('data', $data)
         ->with('data3', $data3)
         ->with('data2', $data2);
@@ -76,7 +76,7 @@ class KelolaDataCropController extends Controller
         $data = KelolaDataCrop::find($id);
         $data2 = KelolaDataCrop::getListDataAllInForm($id);
         $data3 = KelolaDataCrop::getListDataAllInForm2($id);
-        return view('admin.admin-data.crop.formubah_data_crop_all')
+        return view('tanaman.tanaman-data.crop.formubah_data_crop_all')
         ->with('data', $data)
         ->with('data3', $data3)
         ->with('data2', $data2);
@@ -111,7 +111,7 @@ class KelolaDataCropController extends Controller
         $data->lastUpdatedBy = $lastupdateby;
 
         $data->save();
-        return redirect('admin-data/crop/awal/'. $imageid_raw);
+        return redirect('tanaman-data/crop/awal/'. $imageid_raw);
     }
 
     public function update_all(Request $request, $id)
@@ -136,7 +136,7 @@ class KelolaDataCropController extends Controller
         $data->lastUpdatedBy = $lastupdateby;
 
         $data->save();
-        return redirect('admin-data/crop/awal_all/'. $imageid_raw);
+        return redirect('tanaman-data/crop/awal_all/'. $imageid_raw);
     }
 
     /**
@@ -149,13 +149,13 @@ class KelolaDataCropController extends Controller
     {
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
-        return redirect('admin-data/crop/awal/'. $image_raw);
+        return redirect('tanaman-data/crop/awal/'. $image_raw);
     }
 
     public function destroy_all($id)
     {
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
-        return redirect('admin-data/crop/awal_all/'. $image_raw);
+        return redirect('tanaman-data/crop/awal_all/'. $image_raw);
     }
 }

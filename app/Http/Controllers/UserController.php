@@ -169,7 +169,6 @@ class UserController extends Controller
             ]);
         }
 
-
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
 
