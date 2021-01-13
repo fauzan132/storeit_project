@@ -92,7 +92,7 @@ img {
                     <td>{{ $value->created_at }}</td>
                     <td>
                         <a href="{{ url('tanaman-data/crop/awal_all', $value->imageID) }}" class="btn bg-olive btn-flat" title="Lihat Hasil Crop Data ini"><i class="fa fa-eye"></i> Lihat Data Crop</a><br><br>
-                        <a href="{{ url('tanaman-data/cropping_all', $value->imageID) }}" class="btn bg-navy btn-flat" title="Crop Data ini"><i class="fa fa-crop"></i> Crop</a>
+                        <a href="{{ url('tanaman-data/cropping_all', $value->imageID) }}" class="btn btn-primary btn-flat" title="Crop Data ini"><i class="fa fa-crop"></i> Crop Gambar</a>
                     </td>
                     <td>
                         <a href="{{ url('tanaman-data/detail_all', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
