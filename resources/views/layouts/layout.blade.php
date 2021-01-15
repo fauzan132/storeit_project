@@ -144,6 +144,7 @@ desired effect
           <!-- Optionally, you can add icons to the links -->
           <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ url('admin/user/index') }}"><i class="fa fa-users"></i> <span>Data Pengguna</span></a></li>
+          <li><a href="{{ url('admin/log_activity/index') }}"><i class="fa fa-file"></i> <span>Log Activity User</span></a></li>
           <li><a href="{{ url('tanaman-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
           <li><a href="{{ url('tanaman-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman All User</span></a></li>
         </ul>

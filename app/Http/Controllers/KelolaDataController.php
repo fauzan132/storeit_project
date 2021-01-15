@@ -76,6 +76,8 @@ class KelolaDataController extends Controller
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
 
+        \LogActivity::addToLog('Menambahkan data Tanaman');
+
         $data->save();
         return redirect('tanaman-data/index');
     }
@@ -172,6 +174,8 @@ class KelolaDataController extends Controller
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
 
+        \LogActivity::addToLog('Mengubah data Tanaman');
+
         $data->save();
         return redirect('tanaman-data/index');
     }
@@ -197,6 +201,8 @@ class KelolaDataController extends Controller
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
 
+        \LogActivity::addToLog('Mengubah data Tanaman milik user lain');
+
         $data->save();
         return redirect('tanaman-data/index_all');
     }
@@ -210,12 +216,14 @@ class KelolaDataController extends Controller
     public function destroy($id)
     {
         KelolaData::find($id)->delete();
+        \LogActivity::addToLog('Menghapus data Tanaman');
         return redirect('tanaman-data/index');
     }
 
     public function destroy_all($id)
     {
         KelolaData::find($id)->delete();
+        \LogActivity::addToLog('Menghapus data Tanaman milik user lain');
         return redirect('tanaman-data/index_all');
     }
 
@@ -254,6 +262,8 @@ class KelolaDataController extends Controller
         $data->lastUpdatedBy = $user_id;
         $data->save();
 
+        \LogActivity::addToLog('Melakukan crop data Tanaman');
+
         return response()->json(['success'=>'success']);
     }
 
@@ -276,6 +286,8 @@ class KelolaDataController extends Controller
         $data->croppedBy = $user_id;
         $data->lastUpdatedBy = $user_id;
         $data->save();
+
+        \LogActivity::addToLog('Melakukan crop data Tanaman milik user lain');
 
         return response()->json(['success'=>'success']);
     }

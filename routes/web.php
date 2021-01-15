@@ -19,14 +19,19 @@ Route::group(['middleware' => ['web','auth']], function(){
     Route::get('/home','HomeController@index');
     Route::get('/', function(){
         if(Auth::user()->role=="Admin"){
+            \LogActivity::addToLog('Login ke dalam sistem');
             return view('tanaman.home');
         }elseif(Auth::user()->role=="Public"){
+            \LogActivity::addToLog('Login ke dalam sistem');
             return view('tanaman.home');
         }elseif(Auth::user()->role=="Expert ITB"){
+            \LogActivity::addToLog('Login ke dalam sistem');
             return view('tanaman.home');
         }elseif(Auth::user()->role=="Expert EWINDO"){
+            \LogActivity::addToLog('Login ke dalam sistem');
             return view('tanaman.home');
         }elseif(Auth::user()->role=="Expert BALITSA"){
+            \LogActivity::addToLog('Login ke dalam sistem');
             return view('tanaman.home');
         }
     });
@@ -82,6 +87,8 @@ Route::get('admin/user/detail/{id}', 'UserController@show');
 Route::get('admin/user/edit/{id}', 'UserController@edit');
 Route::post('admin/user/update/{id}', 'UserController@update');
 Route::get('admin/user/hapus/{id}', 'UserController@destroy');
+//Log Activity
+Route::get('admin/log_activity/index/', 'UserController@log_activity');
 
 //Kelola Profile
 Route::get('profile/index/', 'UserController@profile');
@@ -89,3 +96,4 @@ Route::get('profile/edit/{id}', 'UserController@edit_profile');
 Route::post('profile/update/{id}', 'UserController@ubah_profile');
 Route::get('profile/edit_login/{id}', 'UserController@edit_login');
 Route::post('profile/update_login/{id}', 'UserController@ubah_login');
+

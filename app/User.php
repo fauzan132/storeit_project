@@ -35,4 +35,11 @@ class User extends Authenticatable
         ->where('id', $id)
         ->get();
     }
+
+    public static function dataLog(){
+        return $data = DB::table('log_activities')
+        ->join('users', 'log_activities.user_id','=','users.id')
+        ->select('log_activities.*', 'users.*')
+        ->get();
+    }
 }

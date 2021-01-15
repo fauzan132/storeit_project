@@ -56,6 +56,8 @@ class UserController extends Controller
             'role' => $request->role
         ]);
         // redirect to home
+        \LogActivity::addToLog('Menambahkan data user');
+
         return redirect('admin/user/index')
         ->with(['success' => 'User berhasil disimpan']);
     }
@@ -98,6 +100,7 @@ class UserController extends Controller
         $data = User::where('id', $id)->first();
         $data->telp =  $request->telp;
         $data->role =  $request->role;
+        \LogActivity::addToLog('Mengubah data user');
    		if($data->save()){
             return redirect('admin/user/index')
             ->with(['success' => 'Data user berhasil diubah']);
@@ -116,6 +119,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
+        \LogActivity::addToLog('Menghapus data user');
         return redirect('admin/user/index');
     }
 
@@ -139,7 +143,9 @@ class UserController extends Controller
         $data = User::where('id', $id)->first();
         $data->name = $request->name;
         $data->telp = $request->telp;
+        
    		if($data->save()){
+            \LogActivity::addToLog('Mengubah data profile');
             return redirect('profile/index')
             ->with(['success' => 'Profile berhasil diubah']);
         }else{
@@ -171,13 +177,22 @@ class UserController extends Controller
 
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
+        
 
    		if($data->save()){
+            \LogActivity::addToLog('Mengubah data login');
             return redirect('profile/index')
             ->with(['success' => 'Data Login berhasil diubah']);
         }else{
             return redirect('profile/index')
             ->with(['error' => 'Data Login gagal diubah']);
         }
+    }
+
+    public function log_activity()
+    {
+        $data = User::dataLog();
+        return view('user.log_activity')
+        ->with('data', $data);;
     }
 }

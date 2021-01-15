@@ -110,6 +110,8 @@ class KelolaDataCropController extends Controller
         $data->ImageComment = $imagecomment;
         $data->lastUpdatedBy = $lastupdateby;
 
+        \LogActivity::addToLog('Mengubah data crop Tanaman');
+
         $data->save();
         return redirect('tanaman-data/crop/awal/'. $imageid_raw);
     }
@@ -135,6 +137,8 @@ class KelolaDataCropController extends Controller
         $data->ImageComment = $imagecomment;
         $data->lastUpdatedBy = $lastupdateby;
 
+        \LogActivity::addToLog('Mengubah data crop Tanaman milik user lain');
+
         $data->save();
         return redirect('tanaman-data/crop/awal_all/'. $imageid_raw);
     }
@@ -149,6 +153,7 @@ class KelolaDataCropController extends Controller
     {
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
+        \LogActivity::addToLog('Mengahpus data crop Tanaman');
         return redirect('tanaman-data/crop/awal/'. $image_raw);
     }
 
@@ -156,6 +161,7 @@ class KelolaDataCropController extends Controller
     {
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
+        \LogActivity::addToLog('Menghapus data crop Tanaman milik user lain');
         return redirect('tanaman-data/crop/awal_all/'. $image_raw);
     }
 }
