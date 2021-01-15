@@ -182,12 +182,22 @@ class KelolaDataController extends Controller
 
     public function update_all(Request $request, $id)
     {
+        if($request->input('tmp_plant') == null && $request->input('tmp_general') == null && $request->input('tmp_symptom') == null){
+            $plant = $request->input('planttype');
+            $general = $request->input('generalident');
+            $symptom = $request->input('symptomname');
+        } else{
+            $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
+            $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+            $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+        }
+
         $userid = $request->user_id;
         $lastupdateby = Auth::user()->id;
-        $planttype=$request->input('planttype');
+        $planttype= $plant;
         $plantorgan=$request->input('plantorgan');
-        $generalident=$request->input('generalident');
-        $symptomname=$request->input('symptomname');
+        $generalident= $general;
+        $symptomname=$symptom;
         $imagecomment=$request->input('imagecomment');
         $img = $request->tmp_image;
         
