@@ -7,6 +7,7 @@ use App\KelolaDataCrop;
 use App\PlantTypeModel;
 use App\GeneralIdentModel;
 use App\SymptomNameModel;
+use App\DetailRawData;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -93,10 +94,14 @@ class KelolaDataController extends Controller
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
         $data->status = $status;
+        $data->save();
 
         \LogActivity::addToLog('Menambahkan data Tanaman');
 
-        $data->save();
+        $data4 = KelolaData::select('imageID')->where('userID', $userid)->latest()->first();
+        //print_r($data4->imageID);
+        \DetailRawData::addToHistory($data4->imageID,'Data ditambahkan');
+
         return redirect('tanaman-data/index');
     }
 
@@ -111,7 +116,12 @@ class KelolaDataController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
-        $data4 = KelolaDataCrop::select('ImageURL')->where('imageID_raw', $id)->latest()->first();
+        $data_temp = KelolaDataCrop::select('ImageURL')->where('imageID_raw', $id)->latest()->first();
+        if($data_temp != null){
+            $data4 = $data_temp;
+        }else{
+            $data4 = "Data belum pernah dicrop";
+        }
         return view('tanaman.tanaman-data.detail_data')
         ->with('data', $data)
         ->with('data2', $data2)
@@ -124,7 +134,12 @@ class KelolaDataController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
-        $data4 = KelolaDataCrop::select('ImageURL')->where('imageID_raw', $id)->latest()->first();
+        $data_temp = KelolaDataCrop::select('ImageURL')->where('imageID_raw', $id)->latest()->first();
+        if($data_temp != null){
+            $data4 = $data_temp;
+        }else{
+            $data4 = "Data belum pernah dicrop";
+        }
         return view('tanaman.tanaman-data.detail_data_all')
         ->with('data', $data)
         ->with('data2', $data2)
@@ -206,6 +221,7 @@ class KelolaDataController extends Controller
         $data->lastUpdateBy = $lastupdateby;
 
         \LogActivity::addToLog('Mengubah data Tanaman');
+        \DetailRawData::addToHistory($id, 'Data diubah');
 
         $data->save();
         return redirect('tanaman-data/index');
@@ -252,6 +268,7 @@ class KelolaDataController extends Controller
         $data->lastUpdateBy = $lastupdateby;
 
         \LogActivity::addToLog('Mengubah data Tanaman milik user lain');
+        \DetailRawData::addToHistory($id, 'Data diubah');
 
         $data->save();
         return redirect('tanaman-data/index_all');
@@ -314,6 +331,7 @@ class KelolaDataController extends Controller
         $data->save();
 
         \LogActivity::addToLog('Melakukan crop data Tanaman');
+        \DetailRawData::addToHistory($id, 'Data dicrop');
         
         //$temp = KelolaDataCrop::getListDataAll($id);
         $temp1 = KelolaData::find($id);
@@ -368,6 +386,7 @@ class KelolaDataController extends Controller
         $data->save();
 
         \LogActivity::addToLog('Melakukan crop data Tanaman milik user lain');
+        \DetailRawData::addToHistory($id, 'Data dicrop');
 
         //$temp = KelolaDataCrop::getListDataAll($id);
         $temp1 = KelolaData::find($id);
@@ -422,6 +441,7 @@ class KelolaDataController extends Controller
         }
 
         \LogActivity::addToLog('Mengubah status data tanaman menjadi verified');
+        \DetailRawData::addToHistory($temp1->imageID,'Status diubah menjadi verified');
 
         $data->save();
         return redirect('tanaman-data/index_all');
@@ -448,9 +468,26 @@ class KelolaDataController extends Controller
         }
 
         \LogActivity::addToLog('Mengubah status data tanaman menjadi unverified');
+        \DetailRawData::addToHistory($temp1->imageID,'Status diubah menjadi unverified');
 
         $data->save();
         return redirect('tanaman-data/index_all');
+    }
+
+    public function riwayat($id)
+    {
+        $data = DetailRawData::dataHistory($id);
+        return view('tanaman.tanaman-data.list_riwayat')
+        ->with('data', $data)
+        ->with('id', $id);
+    }
+
+    public function riwayat_all($id)
+    {
+        $data = DetailRawData::dataHistory($id);
+        return view('tanaman.tanaman-data.list_riwayat_all')
+        ->with('data', $data)
+        ->with('id', $id);
     }
 }
 

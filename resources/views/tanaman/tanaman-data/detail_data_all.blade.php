@@ -45,8 +45,12 @@
 
                   <div class="col-sm-10">
                     <!-- data Gambar hasil crop belum dimuncul kan -->
-                    <a href="{{ URL::asset("upload/{$data4['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:256px">
+                    @if($data4 == "Data belum pernah dicrop")
+                      <label for="inputEmail3" class="control-label" style="color:red;">{{ $data4 }}</label>
+                    @else
+                      <a href="{{ URL::asset("upload/{$data4['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:256px">
                       <img src="{{ URL::asset("upload/{$data4['ImageURL']}") }}" class="img-fluid" width="256px"></a>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -107,6 +111,7 @@
                   <div class="col-sm-10">
                   <a href="{{ url('tanaman-data/index_all/') }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
                   <a href="{{ url('tanaman-data/edit_all', $data->imageID) }}" class="btn bg-orange btn-flat"><i class="fa fa-edit"></i> Ubah Data</a>
+                  <a href="{{ url('tanaman-data/riwayat_all', $data->imageID) }}" class="btn bg-green btn-flat"><i class="fa fa-edit" title="Lihat Riwayat Data ini"></i> Riwayat Data</a>
                   @if($data->status == "Uncropped & Unverified" || $data->status == "Cropped & Unverified")
                   <a href="{{ url('tanaman-data/verifikasi', $data->imageID) }}" class="btn bg-success btn-flat"><i class="fa fa-check"></i> Verify Data</a>
                   @elseif($data->status == "Uncropped & Verified" || $data->status == "Cropped & Verified")

@@ -193,6 +193,6 @@ class UserController extends Controller
     {
         $data = User::dataLog();
         return view('user.log_activity')
-        ->with('data', $data);;
+        ->with('data', $data);
     }
 }

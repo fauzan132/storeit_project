@@ -45,8 +45,13 @@
 
                   <div class="col-sm-10">
                     <!-- data Gambar hasil crop belum dimuncul kan -->
-                    <a href="{{ URL::asset("upload/{$data4['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:256px">
+                    @if($data4 == "Data belum pernah dicrop")
+                      <label for="inputEmail3" class="control-label" style="color:red;">{{ $data4 }}</label>
+                    @else
+                      <a href="{{ URL::asset("upload/{$data4['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:256px">
                       <img src="{{ URL::asset("upload/{$data4['ImageURL']}") }}" class="img-fluid" width="256px"></a>
+                    @endif
+                    
                   </div>
                 </div>
                 <div class="form-group">
@@ -99,6 +104,7 @@
                   <div class="col-sm-10">
                   <a href="{{ url('tanaman-data/index/') }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left" title="Kembali"></i> Kembali</a>
                   <a href="{{ url('tanaman-data/edit', $data->imageID) }}" class="btn bg-orange btn-flat"><i class="fa fa-edit" title="Ubah Data ini"></i> Ubah Data</a>
+                  <a href="{{ url('tanaman-data/riwayat', $data->imageID) }}" class="btn bg-green btn-flat"><i class="fa fa-edit" title="Lihat Riwayat Data ini"></i> Riwayat Data</a>
                   </div>
                 </div>
               </div>
