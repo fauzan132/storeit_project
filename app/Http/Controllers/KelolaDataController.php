@@ -111,10 +111,12 @@ class KelolaDataController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
+        $data4 = KelolaDataCrop::select('ImageURL')->where('imageID_raw', $id)->latest()->first();
         return view('tanaman.tanaman-data.detail_data')
         ->with('data', $data)
         ->with('data2', $data2)
-        ->with('data3', $data3);
+        ->with('data3', $data3)
+        ->with('data4', $data4);
     }
 
     public function show_all($id)
@@ -122,10 +124,12 @@ class KelolaDataController extends Controller
         $data = KelolaData::find($id);
         $data2 = KelolaData::getListDataAllInUpdate($id);
         $data3 = KelolaData::getListDataAllInUpdate2($id);
+        $data4 = KelolaDataCrop::select('ImageURL')->where('imageID_raw', $id)->latest()->first();
         return view('tanaman.tanaman-data.detail_data_all')
         ->with('data', $data)
         ->with('data2', $data2)
-        ->with('data3', $data3);
+        ->with('data3', $data3)
+        ->with('data4', $data4);
     }
 
     /**
