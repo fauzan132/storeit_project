@@ -9,6 +9,7 @@ use App\GeneralIdentModel;
 use App\SymptomNameModel;
 use App\DetailRawData;
 use Auth;
+use File;
 use Illuminate\Http\Request;
 
 class KelolaDataController extends Controller
@@ -80,9 +81,11 @@ class KelolaDataController extends Controller
         $symptomname= $symptom;
         $imagecomment=$request->input('imagecomment');
         $file = $request->file('file');
-        $filename = $file->getClientOriginalName();
+        $filename = uniqid() . '_' . $planttype . '_' .$plantorgan . '_' .$generalident . '_' .$symptomname . '.' . $file->getClientOriginalExtension();
         $request->file('file')->move('images/',$filename);
         $status = "Uncropped & Unverified";
+
+        // print_r($filename);
         
         $data=new KelolaData();
         $data->userID = $userid;
@@ -282,6 +285,9 @@ class KelolaDataController extends Controller
      */
     public function destroy($id)
     {
+        $gambar = KelolaData::where('imageID',$id)->first();
+        File::delete('images/'.$gambar->ImageURL);
+    
         KelolaData::find($id)->delete();
         \LogActivity::addToLog('Menghapus data Tanaman');
         return redirect('tanaman-data/index');
@@ -289,6 +295,9 @@ class KelolaDataController extends Controller
 
     public function destroy_all($id)
     {
+        $gambar = KelolaData::where('imageID',$id)->first();
+        File::delete('images/'.$gambar->ImageURL);
+        
         KelolaData::find($id)->delete();
         \LogActivity::addToLog('Menghapus data Tanaman milik user lain');
         return redirect('tanaman-data/index_all');
