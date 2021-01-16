@@ -98,7 +98,7 @@ img {
                         <a href="{{ url('tanaman-data/detail_all', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
-                        <a href="{{ url('tanaman-data/hapus', $value->imageID) }}" class="btn bg-maroon btn-flat" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
+                        <a href="{{ url('tanaman-data/hapus', $value->imageID) }}" class="btn bg-maroon btn-flat" onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
                     </td>
                 </tr>
                 @endforeach
