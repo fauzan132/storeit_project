@@ -18,11 +18,11 @@
         <section class="col-lg-12 connectedSortable">
         <div class="box">
             <!-- /.box-header -->
-            <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Riwayat Data Tanaman</h3>
             </div>
             <!-- /.box-header -->
+            <div class="box-body">
             <!-- form start -->
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -56,12 +56,8 @@
               </table>
                 
               <a href="{{ url('tanaman-data/detail_all', $id) }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left" title="Kembali"></i> Kembali</a>
-              
-              <div class="box-footer">
-        
-          </div>
-        </div>
-          <!-- /.box -->
+              </div>
+            <!-- /.box-body -->
         
             
         </section>
