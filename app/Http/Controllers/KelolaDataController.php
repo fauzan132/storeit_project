@@ -27,7 +27,14 @@ class KelolaDataController extends Controller
 
     public function index_all()
     {
-        $data = KelolaData::getListDataAll();
+        if(Auth::user()->role == "Expert EWINDO"){
+            $data = KelolaData::getListDataAllEwindo();
+        } else if( Auth::user()->role == "Expert BALITSA" ){
+            $data = KelolaData::getListDataAllBalitsa();
+        }else{
+            $data = KelolaData::getListDataAll();
+        }
+        
         return view('tanaman.tanaman-data.list_data_all')
         ->with('data', $data);
     }
@@ -51,16 +58,25 @@ class KelolaDataController extends Controller
      */
     public function store(Request $request)
     {
-        $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
-        $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
-        $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+        if($request->input('tmp_plant') == "03" && $request->input('tmp_general') == '0105' || $request->input('tmp_general') == '0205' || $request->input('tmp_general') == '0305' &&
+        $request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+        $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+        $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+            $plant = "Other - ". $request->input('other_plant');
+            $general = "Other - ". $request->input('other_general');
+            $symptom = "Other - ". $request->input('other_symptom');
+        } else{
+            $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
+            $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+            $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+        }
 
         $userid = Auth::user()->id;
         $lastupdateby = Auth::user()->id;
-        $planttype=$plant;
+        $planttype= $plant;
         $plantorgan=$request->input('plantorgan');
-        $generalident=$general;
-        $symptomname=$symptom;
+        $generalident= $general;
+        $symptomname= $symptom;
         $imagecomment=$request->input('imagecomment');
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
@@ -150,11 +166,20 @@ class KelolaDataController extends Controller
             $general = $request->input('generalident');
             $symptom = $request->input('symptomname');
         } else{
-            $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
-            $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
-            $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+            if($request->input('tmp_plant') == "03" && $request->input('tmp_general') == '0105' || $request->input('tmp_general') == '0205' || $request->input('tmp_general') == '0305' &&
+            $request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+            $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+            $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+                $plant = "Other - ". $request->input('other_plant');
+                $general = "Other - ". $request->input('other_general');
+                $symptom = "Other - ". $request->input('other_symptom');
+            } else{
+                $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
+                $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+                $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+            }
         }
-        
+
         $userid = $request->user_id;
         $lastupdateby = Auth::user()->id;
         $planttype= $plant;
@@ -187,9 +212,18 @@ class KelolaDataController extends Controller
             $general = $request->input('generalident');
             $symptom = $request->input('symptomname');
         } else{
-            $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
-            $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
-            $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+            if($request->input('tmp_plant') == "03" && $request->input('tmp_general') == '0105' || $request->input('tmp_general') == '0205' || $request->input('tmp_general') == '0305' &&
+            $request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+            $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+            $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+                $plant = "Other - ". $request->input('other_plant');
+                $general = "Other - ". $request->input('other_general');
+                $symptom = "Other - ". $request->input('other_symptom');
+            } else{
+                $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
+                $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+                $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+            }
         }
 
         $userid = $request->user_id;

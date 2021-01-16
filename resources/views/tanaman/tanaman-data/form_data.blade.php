@@ -36,6 +36,7 @@
                           <option value="{{ $row->id}}">{{ $row->nama_plant_type }}</option>
                         @endforeach
                       </select>
+                      <input type="text" name="other_plant" class="form-control" placeholder="Plant Type ..." style="display:none" >
                     </div>
                   </div>
 
@@ -60,6 +61,7 @@
                       <select id="generalident" name="generalident" class="form-control">
                         <option value="">Pilih General Ident</option>
                       </select>
+                      <input type="text" name="other_general" class="form-control" placeholder="General Ident ..." style="display:none" >
                     </div>
                   </div>
 
@@ -69,6 +71,7 @@
                       <select id="symptomname" name="symptomname" class="form-control">
                         <option value="">Pilih Symptom Name</option>
                       </select>
+                      <input type="text" name="other_symptom" class="form-control" placeholder="Symptom Name ..." style="display:none" >
                     </div>
                   </div>
 
@@ -85,9 +88,9 @@
                       <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Comment ...">
                     </div>
                   </div>
-                  <!-- <input type="text" name="tmp_plant" class="form-control" id="tmp_plant">
-                  <input type="text" name="tmp_general" class="form-control" id="tmp_general">
-                  <input type="text" name="tmp_symptom" class="form-control" id="tmp_symptom"> -->
+                  <input type="hidden" name="tmp_plant" class="form-control" id="tmp_plant">
+                  <input type="hidden" name="tmp_general" class="form-control" id="tmp_general">
+                  <input type="hidden" name="tmp_symptom" class="form-control" id="tmp_symptom">
 
                   <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label"></label>
@@ -151,7 +154,7 @@
     });
 
 </script>
-<!-- 
+
 <script>
     $("#planttype").change(function () {
         var planttype = $(this).val();
@@ -165,6 +168,41 @@
         var symptomname = $(this).val();
         document.getElementById('tmp_symptom').value = symptomname;
     });
-</script> -->
+</script>
+
+<script>
+jQuery(document).ready(function() {
+    jQuery("#planttype").change(function() {
+        if (jQuery(this).val() === '03'){ 
+            jQuery('input[name=other_plant]').show();   
+        } else {
+            jQuery('input[name=other_plant]').hide(); 
+        }
+    });
+    
+});
+
+jQuery(document).ready(function() {
+    jQuery("#generalident").change(function() {
+        if (jQuery(this).val() === '0105' || jQuery(this).val() === '0205' || jQuery(this).val() === '0305'){ 
+            jQuery('input[name=other_general]').show();   
+        } else {
+            jQuery('input[name=other_general]').hide(); 
+        }
+    });
+});
+
+jQuery(document).ready(function() {
+    jQuery("#symptomname").change(function() {
+        if (jQuery(this).val() === '0101006' || jQuery(this).val() === '0102006' || jQuery(this).val() === '0105001' || 
+            jQuery(this).val() === '0201006' || jQuery(this).val() === '0202006' || jQuery(this).val() === '0205001' || 
+            jQuery(this).val() === '0301008' || jQuery(this).val() === '0302008' || jQuery(this).val() === '0305001'){ 
+            jQuery('input[name=other_symptom]').show();   
+        } else {
+            jQuery('input[name=other_symptom]').hide(); 
+        }
+    });
+});
+</script>
 
 @endsection

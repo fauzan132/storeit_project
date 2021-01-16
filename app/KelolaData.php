@@ -32,9 +32,7 @@ class KelolaData extends Model
       return $data = DB::table('tb_all_raw_data')
       ->join('users', 'tb_all_raw_data.userID','=','users.id')
       ->select('tb_all_raw_data.*', 'users.*')
-      ->orWhere('tb_all_raw_data.generalIdent','Hama')
-      ->orWhere('tb_all_raw_data.generalIdent','hama')
-      ->orWhere('tb_all_raw_data.generalIdent','HAMA')
+      ->orWhere('tb_all_raw_data.generalIdent','Pest')
       ->get();
     }
 
@@ -42,9 +40,7 @@ class KelolaData extends Model
       return $data = DB::table('tb_all_raw_data')
       ->join('users', 'tb_all_raw_data.userID','=','users.id')
       ->select('tb_all_raw_data.*', 'users.*')
-      ->orWhere('tb_all_raw_data.generalIdent','Penyakit')
-      ->orWhere('tb_all_raw_data.generalIdent','penyakit')
-      ->orWhere('tb_all_raw_data.generalIdent','PENYAKIT')
+      ->orWhere('tb_all_raw_data.generalIdent','Disease')
       ->get();
     }
 

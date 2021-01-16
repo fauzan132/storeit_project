@@ -51,6 +51,7 @@
                         <option value="02">Tomato</option>
                         <option value="03">Other</option>
                       </select>
+                      <input type="text" name="other_plant" class="form-control" placeholder="Plant Type ..." style="display:none" >
                     </div>
                   </div>
 
@@ -75,6 +76,7 @@
                       <select id="generalident" name="generalident" class="form-control">
                         <option value="{{ $data['generalIdent'] }}" selected>{{ $data['generalIdent'] }}</option>
                       </select>
+                      <input type="text" name="other_general" class="form-control" placeholder="General Ident ..." style="display:none" >
                     </div>
                   </div>
 
@@ -84,6 +86,7 @@
                       <select id="symptomname" name="symptomname" class="form-control">
                       <option value="{{ $data['symptomName'] }}" selected>{{ $data['symptomName'] }}</option>
                       </select>
+                      <input type="text" name="other_symptom" class="form-control" placeholder="Symptom Name ..." style="display:none" >
                     </div>
                   </div>
                 
@@ -191,6 +194,41 @@
         var symptomname = $(this).val();
         document.getElementById('tmp_symptom').value = symptomname;
     });
+</script>
+
+<script>
+jQuery(document).ready(function() {
+    jQuery("#planttype").change(function() {
+        if (jQuery(this).val() === '03'){ 
+            jQuery('input[name=other_plant]').show();   
+        } else {
+            jQuery('input[name=other_plant]').hide(); 
+        }
+    });
+    
+});
+
+jQuery(document).ready(function() {
+    jQuery("#generalident").change(function() {
+        if (jQuery(this).val() === '0105' || jQuery(this).val() === '0205' || jQuery(this).val() === '0305'){ 
+            jQuery('input[name=other_general]').show();   
+        } else {
+            jQuery('input[name=other_general]').hide(); 
+        }
+    });
+});
+
+jQuery(document).ready(function() {
+    jQuery("#symptomname").change(function() {
+        if (jQuery(this).val() === '0101006' || jQuery(this).val() === '0102006' || jQuery(this).val() === '0105001' || 
+            jQuery(this).val() === '0201006' || jQuery(this).val() === '0202006' || jQuery(this).val() === '0205001' || 
+            jQuery(this).val() === '0301008' || jQuery(this).val() === '0302008' || jQuery(this).val() === '0305001'){ 
+            jQuery('input[name=other_symptom]').show();   
+        } else {
+            jQuery('input[name=other_symptom]').hide(); 
+        }
+    });
+});
 </script>
 
 @endsection
