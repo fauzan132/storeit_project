@@ -54,7 +54,7 @@ img {
                         <option>- Pilih -</option>
                         <option>Plant Type</option>
                         <option>Plant Organ</option>
-                        <option>General Ident</option>
+                        <option>Symptom Identification</option>
                       </select>
                   </div>
                   </div>
