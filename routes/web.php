@@ -47,7 +47,7 @@ Route::get('dropdown/plant-type', 'DropDownController@selectPlantType');
 Route::get('dropdown/general-ident/{id}', 'DropDownController@selectGeneralIdent');
 Route::get('dropdown/symptom-name/{id}', 'DropDownController@selectSymptomName');
 
-//Kelola Data by tanaman
+//Kelola Data
 Route::get('tanaman-data/index/', 'KelolaDataController@index');
 Route::get('tanaman-data/create/', 'KelolaDataController@create');
 Route::post('tanaman-data/simpan/', 'KelolaDataController@store');
@@ -60,6 +60,10 @@ Route::get('tanaman-data/detail_all/{id}', 'KelolaDataController@show_all');
 Route::get('tanaman-data/edit_all/{id}', 'KelolaDataController@edit_all');
 Route::post('tanaman-data/update_all/{id}', 'KelolaDataController@update_all');
 Route::get('tanaman-data/hapus_all/{id}', 'KelolaDataController@destroy_all');
+//Verifikasi Data
+Route::get('tanaman-data/verifikasi/{id}', 'KelolaDataController@verifikasi');
+Route::get('tanaman-data/unverifikasi/{id}', 'KelolaDataController@unverifikasi');
+
 //Fitur Cropping
 Route::post('tanaman-data/upload/{id}','KelolaDataController@upload');
 Route::get('tanaman-data/cropping/{id}','KelolaDataController@cropping');
@@ -78,6 +82,7 @@ Route::get('tanaman-data/crop/detail_all/{id}', 'KelolaDataCropController@show_a
 Route::get('tanaman-data/crop/edit_all/{id}', 'KelolaDataCropController@edit_all');
 Route::post('tanaman-data/crop/update_all/{id}', 'KelolaDataCropController@update_all');
 Route::get('tanaman-data/crop/hapus_all/{id}', 'KelolaDataCropController@destroy_all');
+
 
 //Kelola User
 Route::get('admin/user/index/', 'UserController@index');

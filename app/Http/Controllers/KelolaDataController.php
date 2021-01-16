@@ -81,6 +81,7 @@ class KelolaDataController extends Controller
         $file = $request->file('file');
         $filename = $file->getClientOriginalName();
         $request->file('file')->move('images/',$filename);
+        $status = "Uncropped & Unverified";
         
         $data=new KelolaData();
         $data->userID = $userid;
@@ -91,6 +92,7 @@ class KelolaDataController extends Controller
         $data->ImageURL = $filename;
         $data->ImageComment = $imagecomment;
         $data->lastUpdateBy = $lastupdateby;
+        $data->status = $status;
 
         \LogActivity::addToLog('Menambahkan data Tanaman');
 
@@ -274,9 +276,10 @@ class KelolaDataController extends Controller
     public function cropping($id)
     {
         $data = KelolaData::find($id);
-        //print_r($data->imageID);
         return view('tanaman.tanaman-data.cropper')
         ->with('data', $data);
+        // $temp = KelolaDataCrop::getListDataAll($id);
+        // print_r($data);
     }
     public function cropping_all($id)
     {
@@ -307,6 +310,35 @@ class KelolaDataController extends Controller
         $data->save();
 
         \LogActivity::addToLog('Melakukan crop data Tanaman');
+        
+        //$temp = KelolaDataCrop::getListDataAll($id);
+        $temp1 = KelolaData::find($id);
+        if($temp1->status == "Uncropped & Unverified"){
+            $status = "Cropped & Unverified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Uncropped & Verified"){
+            $status = "Cropped & Verified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Cropped & Unverified"){
+            $status = "Cropped & Unverified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Cropped & Verified"){
+            $status = "Cropped & Verified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else{
+            $status = "Error";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }
 
         return response()->json(['success'=>'success']);
     }
@@ -333,6 +365,88 @@ class KelolaDataController extends Controller
 
         \LogActivity::addToLog('Melakukan crop data Tanaman milik user lain');
 
+        //$temp = KelolaDataCrop::getListDataAll($id);
+        $temp1 = KelolaData::find($id);
+        if($temp1->status == "Uncropped & Unverified"){
+            $status = "Cropped & Unverified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Uncropped & Verified"){
+            $status = "Cropped & Verified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Cropped & Unverified"){
+            $status = "Cropped & Unverified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Cropped & Verified"){
+            $status = "Cropped & Verified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else{
+            $status = "Error";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }
+
         return response()->json(['success'=>'success']);
     }
+
+    public function verifikasi($id)
+    {
+        $temp1 = KelolaData::find($id);
+        if($temp1->status == "Uncropped & Unverified"){
+            $status = "Uncropped & Verified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Cropped & Unverified"){
+            $status = "Cropped & Verified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else{
+            $status = "Error";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }
+
+        \LogActivity::addToLog('Mengubah status data tanaman menjadi verified');
+
+        $data->save();
+        return redirect('tanaman-data/index_all');
+    }
+
+    public function unverifikasi($id)
+    {
+        $temp1 = KelolaData::find($id);
+        if($temp1->status == "Uncropped & Verified"){
+            $status = "Uncropped & Unverified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else if($temp1->status == "Cropped & Verified"){
+            $status = "Cropped & Unverified";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }else{
+            $status = "Error";
+            $data = KelolaData::where('imageID', $id)->first();
+            $data->status = $status;
+            $data->save();
+        }
+
+        \LogActivity::addToLog('Mengubah status data tanaman menjadi unverified');
+
+        $data->save();
+        return redirect('tanaman-data/index_all');
+    }
 }
+
