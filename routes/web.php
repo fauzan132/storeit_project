@@ -66,6 +66,9 @@ Route::get('tanaman-data/unverifikasi/{id}', 'KelolaDataController@unverifikasi'
 //Riwayat Data
 Route::get('tanaman-data/riwayat/{id}', 'KelolaDataController@riwayat');
 Route::get('tanaman-data/riwayat_all/{id}', 'KelolaDataController@riwayat_all');
+//Cari Data
+Route::get('tanaman-data/cari/', 'KelolaDataController@caridata');
+Route::get('tanaman-data/cari_all/', 'KelolaDataController@caridata_all');
 
 //Fitur Cropping
 Route::post('tanaman-data/upload/{id}','KelolaDataController@upload');

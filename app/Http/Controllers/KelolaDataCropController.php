@@ -192,6 +192,9 @@ class KelolaDataCropController extends Controller
      */
     public function destroy($id)
     {
+        $gambar = KelolaDataCrop::where('imageID',$id)->first();
+        File::delete('upload/'.$gambar->ImageURL);
+
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
         \LogActivity::addToLog('Mengahpus data crop Tanaman');
@@ -200,6 +203,9 @@ class KelolaDataCropController extends Controller
 
     public function destroy_all($id)
     {
+        $gambar = KelolaDataCrop::where('imageID',$id)->first();
+        File::delete('upload/'.$gambar->ImageURL);
+
         $image_raw = KelolaDataCrop::select('imageID_raw')->where('imageID', $id)->value('imageID_raw');
         KelolaDataCrop::find($id)->delete();
         \LogActivity::addToLog('Menghapus data crop Tanaman milik user lain');
