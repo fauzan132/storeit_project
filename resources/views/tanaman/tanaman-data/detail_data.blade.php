@@ -102,9 +102,9 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('tanaman-data/index/') }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left" title="Kembali"></i> Kembali</a>
+                  <a href="{{ url('tanaman-data/index/') }}" class="btn btn-default btn-flat"><i class="fa fa-arrow-circle-left" title="Kembali"></i> Kembali</a>
                   <a href="{{ url('tanaman-data/edit', $data->imageID) }}" class="btn bg-orange btn-flat"><i class="fa fa-edit" title="Ubah Data ini"></i> Ubah Data</a>
-                  <a href="{{ url('tanaman-data/riwayat', $data->imageID) }}" class="btn bg-green btn-flat"><i class="fa fa-edit" title="Lihat Riwayat Data ini"></i> Riwayat Data</a>
+                  <a href="{{ url('tanaman-data/riwayat', $data->imageID) }}" class="btn btn-primary btn-flat"><i class="fa fa-edit" title="Lihat Riwayat Data ini"></i> Riwayat Data</a>
                   </div>
                 </div>
               </div>
