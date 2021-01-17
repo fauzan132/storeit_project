@@ -78,7 +78,7 @@
                   <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Image URL</label>
                     <div class="col-sm-10">
-                      <input type="file" name="file" class="form-control" id="file" required>
+                      <input type="file" name="images[]" class="form-control" id="file" multiple required>
                     </div>
                   </div>
 

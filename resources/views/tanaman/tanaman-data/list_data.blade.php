@@ -44,23 +44,70 @@ img {
             <div class="box-body">
             <a href="{{ url('tanaman-data/create') }}"><button type="button" class="btn btn-primary btn-flat btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
              <!-- form start -->
-             <form class="form-horizontal" method="POST" action="#" enctype="multipart/form-data">
+             <form class="form-horizontal" method="GET" action="{{ url('tanaman-data/cari') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
                 <div class="col-sm-3">
-                  <label for="inputEmail3">Tampilkan Berdasarkan : </label>
-                    <select class="form-control">
+                  <label for="inputEmail3">Pilih Plant Type : </label>
+                    <select class="form-control" id="planttype" name="planttype">
                       <option>- Pilih -</option>
-                      <option>Plant Type</option>
-                      <option>Plant Organ</option>
-                      <option>Symptom Identification</option>
+                      <option>Chilli</option>
+                      <option>Tomato</option>
+                      <option>Other</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                  <label for="inputEmail3">Pilih Plant Organ : </label>
+                    <select class="form-control" id="plantorgan" name="plantorgan">
+                      <option>- Pilih -</option>
+                      <option>Fruit</option>
+                      <option>Flower</option>
+                      <option>Leaf</option>
+                      <option>Stem</option>
+                      <option>Root</option>
+                      <option>Other</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                  <label for="inputEmail3">Pilih Symptom Identification : </label>
+                    <select class="form-control" id="generalident" name="generalident">
+                      <option>- Pilih -</option>
+                      <option>Pest</option>
+                      <option>Disease</option>
+                      <option>Nutrient</option>
+                      <option>Healthy</option>
+                      <option>Other</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                  <label for="inputEmail3">Pilih Symptom Name : </label>
+                    <select class="form-control" id="symptomname" name="symptomname">
+                      <option>- Pilih -</option>
+                      <option>Aphid</option>
+                      <option>Lalat buah</option>
+                      <option>Ulat grayak</option>
+                      <option>Tungau</option>
+                      <option>Thrips</option>
+                      <option>Whitefly</option>
+                      <option>Ulat buah</option>
+                      <option>Antraknose</option>
+                      <option>Bacterial spot</option>
+                      <option>Bacterial wilt</option>
+                      <option>Phytophthora blight</option>
+                      <option>Yellow leaf curl virus</option>
+                      <option>Late blight</option>
+                      <option>Early blight</option>
+                      <option>Undernutrition</option>
+                      <option>Overnutrition</option>
+                      <option>Healthy</option>
+                      <option>Other</option>                      
                     </select>
                 </div>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-10">
-                <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>
+                  <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>
                   </div>
                 </div>
               </div>
@@ -129,6 +176,7 @@ img {
       </div>
       <!-- /.row (main row) -->
 </section>
+
 @endsection
 
 
