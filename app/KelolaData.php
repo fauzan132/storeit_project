@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
@@ -74,5 +75,10 @@ class KelolaData extends Model
       ->select('tb_all_raw_data.*', 'users.*')
       ->where('tb_all_raw_data.imageID', $id)
       ->first();
+    }
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+          ->format('l, d F Y H:i');
     }
 }
