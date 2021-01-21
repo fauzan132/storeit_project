@@ -96,7 +96,7 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('tanaman-data/crop/awal_all', $data['imageID_raw']) }}" class="btn btn-primary"><i class="fa fa-save"></i> Kembali</a>
+                  <a href="{{ url('tanaman-data/crop/awal_all', $data['imageID_raw']) }}" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Kembali</a>
                   </div>
                 </div>
               </div>
