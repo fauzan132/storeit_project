@@ -29,7 +29,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="{{ asset('login_assets/images/logo.png') }}" alt="IMG">
+					<img src="{{ asset('images/logo_app.png') }}" alt="IMG" width="600px">
 				</div>
                 @if (session('status'))
                 <div class="alert alert-danger" role="alert">
