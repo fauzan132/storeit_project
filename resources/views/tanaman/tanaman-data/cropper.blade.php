@@ -40,7 +40,7 @@ img {
         <div class="img-container">
             <div class="row">
                 <div class="col-md-8">
-                    <img id="image" src="{{ URL::asset("images/{$data->ImageURL}") }}">
+                    <img id="image" src="{{ $data->ImageURL }}">
                 </div>
                 <div class="col-md-4">
                     <div class="preview"></div>

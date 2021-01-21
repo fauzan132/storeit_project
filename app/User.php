@@ -40,6 +40,7 @@ class User extends Authenticatable
         return $data = DB::table('log_activities')
         ->join('users', 'log_activities.user_id','=','users.id')
         ->select('log_activities.*', 'users.*')
+        ->orderBy('date', 'DESC')
         ->get();
     }
 }

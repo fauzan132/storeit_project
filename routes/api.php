@@ -32,4 +32,4 @@ Route::group([
 
 //API
 Route::get('kelola-data/lihat/', 'API\KelolaDataController@index');
-Route::post('kelola-data/simpan/', 'API\KelolaDataController@store');
+Route::get('kelola-data/simpan/', 'API\KelolaDataController@store');

@@ -19,30 +19,67 @@ class KelolaDataController extends Controller
         }
     }
 
-    public function store(){
-        $planttype=$request->input('planttype');
-        $plantorgan=$request->input('plantorgan');
-        $generalident=$request->input('generalident');
-        $status=$request->input('status');
-        $imagecomment=$request->input('imagecomment');
-        $file = $request->file('file');
-        $filename = $file->getClientOriginalName();
-        $request->file('file')->move('images/',$filename);
+    public function store(Request $request){
 
-        $data=new KelolaData();
-        $data->plantType = $planttype;
-        $data->plantOrgan = $plantorgan;
-        $data->generalIdent = $generalident;
-        $data->status = $status;
-        $data->ImageURL = $filename;
-        $data->ImageComment = $imagecomment;
+        // if($files = $request->file('images')){
+        //     foreach($files as $key => $value) {
+        //         $userid = $request->input('userid');;
+        //         $lastupdateby = $request->input('lastupdateby');;
+        //         $planttype= $request->input('planttype');;
+        //         $plantorgan=$request->input('plantorgan');
+        //         $generalident= $request->input('generalident');;
+        //         $symptomname= $request->input('symptomname');;
+        //         $imagecomment=$request->input('imagecomment');
+        //         $name = uniqid() . '_' . $planttype . '_' .$plantorgan . '_' .$generalident . '_' .$symptomname . '.' . $value->getClientOriginalExtension();
+        //         $value->move('images/',$name);
+        //         $status = "Uncropped & Unverified";
+        //         //$temp = '2';
 
-        if($data->save()){
-            return response()->json(['success'=>$result]);
-        }else{
-            return response()->json(['error'=>'Data Kosong']);
-        }
+        //         KelolaData::create([
+        //             'userID' => $userid[$key],
+        //             'plantType' => $planttype[$key],
+        //             'plantOrgan' => $plantorgan[$key],
+        //             'generalIdent' => $generalident[$key],
+        //             'symptomName' => $symptomname[$key],
+        //             'ImageURL' => $name[$key],
+        //             'ImageComment' => $imagecomment[$key],
+        //             'lastUpdateBy' => $lastupdateby[$key],
+        //             'status' => $status[$key]
+        //         ]);   
+        //     } 
+        //     return response()->json(['success'=> 'Berhasil Masuk']);
+        // }else{
+        //     return response()->json(['error'=> 'Gagal Masuk']);
+        // }
+
+        //if($files = $request->file('images')){
+            //foreach($files as $file){
+                $files = $request->file('images');
+                $userid = $request->input('userid');
+                $lastupdateby = $request->input('lastupdateby');
+                $planttype= $request->input('planttype');
+                $plantorgan=$request->input('plantorgan');
+                $generalident= $request->input('generalident');
+                $symptomname= $request->input('symptomname');
+                $imagecomment=$request->input('imagecomment');
+                $name = uniqid() . '_' . $planttype . '_' .$plantorgan . '_' .$generalident . '_' .$symptomname . '.' . $files->getClientOriginalExtension();
+                $files->move('images/',$name);
+                $status = "Uncropped & Unverified";
+    
+                $data = new KelolaData();
+                $data->userID = $userid;
+                $data->plantType = $planttype;
+                $data->plantOrgan = $plantorgan;
+                $data->generalIdent = $generalident;
+                $data->symptomName = $symptomname;
+                $data->ImageURL = $name;
+                $data->ImageComment = $imagecomment;
+                $data->lastUpdateBy = $lastupdateby;
+                $data->status = $status;
+                $data->save();
+            //}
+            return response()->json(['success'=> 'Berhasil Masuk']);
+        //}
     }
-
 }
         

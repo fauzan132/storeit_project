@@ -32,8 +32,8 @@
 
                   <div class="col-sm-10">
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
-                    <a href="{{ URL::asset("images/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:500px">
-                    <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid" width="600px">
+                    <a href="{{ $data['ImageURL'] }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:500px">
+                    <img src="{{ $data['ImageURL'] }}" class="img-fluid" width="600px">
                     </a>
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
                     <input type="hidden" name="user_id" value="{{ $data['userID'] }}">
@@ -71,12 +71,12 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">General Ident</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Symptom Identification</label>
                     <div class="col-sm-10">
                       <select id="generalident" name="generalident" class="form-control">
                         <option value="{{ $data['generalIdent'] }}" selected>{{ $data['generalIdent'] }}</option>
                       </select>
-                      <input type="text" name="other_general" class="form-control" placeholder="General Ident ..." style="display:none" >
+                      <input type="text" name="other_general" class="form-control" placeholder="Symptom Identification ..." style="display:none" >
                     </div>
                   </div>
 
@@ -144,7 +144,7 @@
                 $("select#generalident").html(result);
                 var _options = ""
                 var tmp_data = JSON.parse(result)
-                _options += ('<option value=""> Pilih General Ident </option>');
+                _options += ('<option value=""> Pilih Symptom Identification </option>');
                 $.each(tmp_data, function (i, value) {
                     _options += ('<option value="' + value.id + '">' + value
                         .nama_general_ident + '</option>');

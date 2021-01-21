@@ -20,6 +20,7 @@ class KelolaDataCrop extends Model
       ->join('users', 'tb_all_crop_data.croppedBy','=','users.id')
       ->select('tb_all_crop_data.*', 'users.*')
       ->where('tb_all_crop_data.imageID_raw', $id)
+      ->orderBy('currentDate','DESC')
       ->get();
     }
 

@@ -25,6 +25,7 @@ class KelolaData extends Model
       return $data = DB::table('tb_all_raw_data')
       ->join('users', 'tb_all_raw_data.userID','=','users.id')
       ->select('tb_all_raw_data.*', 'users.*')
+      ->orderBy('currentDate','DESC')
       ->get();
     }
 
@@ -33,6 +34,7 @@ class KelolaData extends Model
       ->join('users', 'tb_all_raw_data.userID','=','users.id')
       ->select('tb_all_raw_data.*', 'users.*')
       ->orWhere('tb_all_raw_data.generalIdent','Pest')
+      ->orderBy('currentDate','DESC')
       ->get();
     }
 
@@ -41,6 +43,7 @@ class KelolaData extends Model
       ->join('users', 'tb_all_raw_data.userID','=','users.id')
       ->select('tb_all_raw_data.*', 'users.*')
       ->orWhere('tb_all_raw_data.generalIdent','Disease')
+      ->orderBy('currentDate','DESC')
       ->get();
     }
 

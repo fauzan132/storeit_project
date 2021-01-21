@@ -116,8 +116,11 @@ img {
                   </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-10">
-                    <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>
+                    <div class="col-sm-2">
+                      <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>
+                    </div>
+                    <div class="col-sm-2">
+                      <a href="{{ url('tanaman-data/index_all') }}" class="btn bg-green btn-flat" title="Reset Pencarian"><i class="fa fa-check"></i> Reset</a>
                     </div>
                   </div>
                 </div>
@@ -133,7 +136,7 @@ img {
                     <th>Status</th>
                     <th>Crop Data</th>     
                     <th>Lihat Metadata</th>
-                    <th>Hapus Data</th>
+                    <th>Reject Data</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -142,8 +145,8 @@ img {
                 <?php $no++ ;?>
                 <tr>
                 <td>{{ $no }}</td>
-                    <td><a href="{{ URL::asset("images/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="Flower">
-          <img src="{{ URL::asset("images/{$value->ImageURL}") }}" width="150px" class="img-fluid">
+                    <td><a href="{{ $value->ImageURL }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="Flower">
+          <img src="{{ $value->ImageURL }}" width="150px" class="img-fluid">
         </a></td>
                     <td>{{ $value->name }} - {{ $value->role }}</td>
                     <td>{{ $value->plantType }}</td>
@@ -157,7 +160,7 @@ img {
                         <a href="{{ url('tanaman-data/detail_all', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
-                        <a href="{{ url('tanaman-data/hapus', $value->imageID) }}" class="btn bg-maroon btn-flat" onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
+                        <a href="{{ url('tanaman-data/reject', $value->imageID) }}" class="btn bg-maroon btn-flat" onclick="return confirm('Apakah anda yakin akan menolak data ini ?')" title="Reject Data ini"><i class="fa fa-close"></i> Reject</a>
                     </td>
                 </tr>
                 @endforeach
@@ -172,7 +175,7 @@ img {
                     <th>Status</th>
                     <th>Crop Data</th>
                     <th>Lihat Metadata</th>
-                    <th>Hapus Data</th>
+                    <th>Reject Data</th>
                 </tr>
                 </tfoot>
               </table>

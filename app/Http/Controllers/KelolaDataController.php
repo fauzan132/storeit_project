@@ -22,7 +22,7 @@ class KelolaDataController extends Controller
     public function index()
     {
         $id = Auth::user()->id;
-        $data = KelolaData::select('*')->where('userID', $id)->get();
+        $data = KelolaData::select('*')->where('userID', $id)->latest()->get();
         return view('tanaman.tanaman-data.list_data')
         ->with('data', $data);
     }
@@ -60,17 +60,48 @@ class KelolaDataController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->input('tmp_plant') == "03" && $request->input('tmp_general') == '0105' || $request->input('tmp_general') == '0205' || $request->input('tmp_general') == '0305' &&
-        $request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
-        $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
-        $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+        if($request->input('tmp_plant') == "03"){
             $plant = "Other - ". $request->input('other_plant');
-            $general = "Other - ". $request->input('other_general');
-            $symptom = "Other - ". $request->input('other_symptom');
+            if($request->input('tmp_general') == '0105' || $request->input('tmp_general') == '0205' || $request->input('tmp_general') == '0305'){
+                $general = "Other - ". $request->input('other_general');
+                if($request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+                $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+                $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+                    $symptom = "Other - ". $request->input('other_symptom');
+                }else{
+                    $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+                }
+            }else{
+                $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+                if($request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+                $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+                $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+                    $symptom = "Other - ". $request->input('other_symptom');
+                }else{
+                    $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+                }
+            }
         } else{
             $plant = PlantTypeModel::select('nama_plant_type')->where('id', $request->planttype)->value('nama_plant_type');
-            $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
-            $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+            if($request->input('tmp_general') == '0105' || $request->input('tmp_general') == '0205' || $request->input('tmp_general') == '0305'){
+                $general = "Other - ". $request->input('other_general');
+                if($request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+                $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+                $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+                    $symptom = "Other - ". $request->input('other_symptom');
+                }else{
+                    $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+                }
+            }else{
+                $general = GeneralIdentModel::select('nama_general_ident')->where('id', intval($request->generalident))->value('nama_general_ident');
+                if($request->input('tmp_symptom') == '0101006' || $request->input('tmp_symptom') == '0102006' || $request->input('tmp_symptom') == '0105001' || 
+                $request->input('tmp_symptom') == '0201006' || $request->input('tmp_symptom') == '0202006' || $request->input('tmp_symptom') == '0205001' || 
+                $request->input('tmp_symptom') == '0301008' || $request->input('tmp_symptom') == '0302008' || $request->input('tmp_symptom') == '0305001'){
+                    $symptom = "Other - ". $request->input('other_symptom');
+                }else{
+                    $symptom = SymptomNameModel::select('nama_symptom_name')->where('id', intval($request->symptomname))->value('nama_symptom_name');
+                }
+            }
         }
 
         if($files = $request->file('images')){
@@ -92,7 +123,7 @@ class KelolaDataController extends Controller
                 $data->plantOrgan = $plantorgan;
                 $data->generalIdent = $generalident;
                 $data->symptomName = $symptomname;
-                $data->ImageURL = $name;
+                $data->ImageURL = 'http://storeit.ganesalens.id/public/images/'.$name;
                 $data->ImageComment = $imagecomment;
                 $data->lastUpdateBy = $lastupdateby;
                 $data->status = $status;
@@ -100,13 +131,11 @@ class KelolaDataController extends Controller
 
                 $data4 = KelolaData::select('imageID')->where('userID', $userid)->latest()->first();
                 \DetailRawData::addToHistory($data4->imageID,'Data ditambahkan');
+                //print_r($files);
             }
         }
 
         \LogActivity::addToLog('Menambahkan data Tanaman');
-
-        
-
         return redirect('tanaman-data/index');
     }
 
@@ -336,7 +365,7 @@ class KelolaDataController extends Controller
 
         $data=new KelolaDataCrop();
         $data->imageID_raw = $id;
-        $data->ImageURL = $temp;
+        $data->ImageURL = 'http://storeit.ganesalens.id/public/upload/'.$temp;
         $data->croppedBy = $user_id;
         $data->lastUpdatedBy = $user_id;
         $data->save();
@@ -391,7 +420,7 @@ class KelolaDataController extends Controller
 
         $data=new KelolaDataCrop();
         $data->imageID_raw = $id;
-        $data->ImageURL = $temp;
+        $data->ImageURL = 'http://storeit.ganesalens.id/public/upload/'.$temp;
         $data->croppedBy = $user_id;
         $data->lastUpdatedBy = $user_id;
         $data->save();
@@ -515,14 +544,14 @@ class KelolaDataController extends Controller
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1110");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
@@ -531,13 +560,13 @@ class KelolaDataController extends Controller
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1100");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }
             }else{
@@ -548,13 +577,13 @@ class KelolaDataController extends Controller
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1010");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
@@ -562,12 +591,12 @@ class KelolaDataController extends Controller
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1000");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }
             }
@@ -580,13 +609,13 @@ class KelolaDataController extends Controller
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0110");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
@@ -594,12 +623,12 @@ class KelolaDataController extends Controller
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0100");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }
             }else{
@@ -609,23 +638,23 @@ class KelolaDataController extends Controller
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0010");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
                         //print_r("0001");
                         $data = KelolaData::select('*')->where('userID', $id)
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0000");
                         $data = KelolaData::select('*')->where('userID', $id)
-                        ->get();
+                        ->latest()->get();
                     }
                 }       
             }
@@ -653,14 +682,14 @@ class KelolaDataController extends Controller
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1110");
                         $data = KelolaData::select('*')
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
@@ -669,13 +698,13 @@ class KelolaDataController extends Controller
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1100");
                         $data = KelolaData::select('*')
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }
             }else{
@@ -686,13 +715,13 @@ class KelolaDataController extends Controller
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1010");
                         $data = KelolaData::select('*')
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
@@ -700,12 +729,12 @@ class KelolaDataController extends Controller
                         $data = KelolaData::select('*')
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("1000");
                         $data = KelolaData::select('*')
                         ->where('plantType', 'like', '%'.$request->planttype.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }
             }
@@ -718,13 +747,13 @@ class KelolaDataController extends Controller
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0110");
                         $data = KelolaData::select('*')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
@@ -732,12 +761,12 @@ class KelolaDataController extends Controller
                         $data = KelolaData::select('*')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0100");
                         $data = KelolaData::select('*')
                         ->where('plantOrgan', 'like', '%'.$request->plantorgan.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }
             }else{
@@ -747,23 +776,23 @@ class KelolaDataController extends Controller
                         $data = KelolaData::select('*')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0010");
                         $data = KelolaData::select('*')
                         ->where('generalIdent', 'like', '%'.$request->generalident.'%')
-                        ->get();
+                        ->latest()->get();
                     }
                 }else{
                     if($request->symptomname != "- Pilih -"){
                         //print_r("0001");
                         $data = KelolaData::select('*')
                         ->where('symptomName', 'like', '%'.$request->symptomname.'%')
-                        ->get();
+                        ->latest()->get();
                     }else{
                         //print_r("0000");
                         $data = KelolaData::select('*')
-                        ->get();
+                        ->latest()->get();
                     }
                 }       
             }
@@ -771,6 +800,23 @@ class KelolaDataController extends Controller
 
         return view('tanaman.tanaman-data.list_data_all')
         ->with('data', $data);
+    }
+
+    public function reject(Request $request, $id)
+    {
+        $lastupdateby = Auth::user()->id;
+        $imagecomment=$request->input('imagecomment');
+
+        $data = KelolaData::where('imageID', $id)->first();
+        $data->ImageComment = $imagecomment;
+        $data->lastUpdateBy = $lastupdateby;
+        $data->status = "Reject";
+
+        \LogActivity::addToLog('Reject data Tanaman');
+        \DetailRawData::addToHistory($id, 'Data direject');
+
+        $data->save();
+        return redirect('tanaman-data/index');
     }
 }
 

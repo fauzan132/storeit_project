@@ -1,0 +1,2 @@
+-resizeable crop
+-lokasi crop

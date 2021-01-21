@@ -40,8 +40,8 @@ img {
             <div class="box-body">
             <label>Image ID = {{$data->imageID}}</label><br>
             <label>Data Milik = {{ $data->name }} - {{ $data->role }}</label>
-            <a href="{{ URL::asset("images/{$data->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery">
-          <img src="{{ URL::asset("images/{$data->ImageURL}") }}" width="150px" class="img-fluid">
+            <a href="{{ $data->ImageURL }}" data-toggle="lightbox" data-gallery="image-gallery">
+          <img src="{{ $data->ImageURL }}" width="150px" class="img-fluid">
         </a><br>
             <a href="{{ url('tanaman-data/index_all/') }}" class="btn btn-default">Kembali ke list data</a>
             <br><br>
@@ -55,7 +55,7 @@ img {
                     <th>Cropped By</th>
                     <th>Perbaharui Label</th>
                     <th>Lihat Data</th>
-                    <th>Hapus Data</th>
+                    <!-- <th>Hapus Data</th> -->
                 </tr>
                 </thead>
                 <tbody>
@@ -65,8 +65,8 @@ img {
                 <tr>
                 <td>{{ $no }}</td>
                     <td>
-                    <a href="{{ URL::asset("upload/{$value->ImageURL}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $value->plantType }}">
-                    <img src="{{ URL::asset("upload/{$value->ImageURL}") }}" width="150px" class="img-fluid">
+                    <a href="{{ $value->ImageURL }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $value->plantType }}">
+                    <img src="{{ $value->ImageURL }}" width="150px" class="img-fluid">
                     </a></td>
                     <td>{{ $value->plantType }}</td>
                     <td>{{ $value->plantOrgan }}</td>
@@ -77,9 +77,9 @@ img {
                     <td>
                         <a href="{{ url('tanaman-data/crop/detail_all', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="{{ url('tanaman-data/crop/hapus_all', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
-                    </td>
+                    </td> -->
                 </tr>
                 @endforeach
                 </tbody>
@@ -92,7 +92,7 @@ img {
                     <th>Cropped By</th>
                     <th>Perbaharui Label</th>
                     <th>Lihat Data</th>
-                    <th>Hapus Data</th>
+                    <!-- <th>Hapus Data</th> -->
                 </tr>
                 </tfoot>
               </table>

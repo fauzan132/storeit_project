@@ -48,8 +48,8 @@
                     @if($data4 == "Data belum pernah dicrop")
                       <label for="inputEmail3" class="control-label" style="color:red;">{{ $data4 }}</label>
                     @else
-                      <a href="{{ URL::asset("upload/{$data4['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:256px">
-                      <img src="{{ URL::asset("upload/{$data4['ImageURL']}") }}" class="img-fluid" width="256px"></a>
+                      <a href="{{ $data4['ImageURL'] }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:256px">
+                      <img src="{{ $data4['ImageURL'] }}" class="img-fluid" width="256px"></a>
                     @endif
                   </div>
                 </div>
@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">General Ident</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Symptom Identification</label>
 
                   <div class="col-sm-10">
                     <input type="text" name="generalident" class="form-control" id="generalident" value="{{ $data['generalIdent'] }}" disabled>
