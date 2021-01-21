@@ -61,6 +61,7 @@ Route::get('tanaman-data/edit_all/{id}', 'KelolaDataController@edit_all');
 Route::post('tanaman-data/update_all/{id}', 'KelolaDataController@update_all');
 Route::get('tanaman-data/hapus_all/{id}', 'KelolaDataController@destroy_all');
 Route::post('tanaman-data/reject/{id}', 'KelolaDataController@reject');
+Route::get('tanaman-data/reject_form/{id}', 'KelolaDataController@tolak');
 //Verifikasi Data
 Route::get('tanaman-data/verifikasi/{id}', 'KelolaDataController@verifikasi');
 Route::get('tanaman-data/unverifikasi/{id}', 'KelolaDataController@unverifikasi');
