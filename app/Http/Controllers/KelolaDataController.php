@@ -817,7 +817,18 @@ class KelolaDataController extends Controller
         \DetailRawData::addToHistory($id, 'Data direject');
 
         $data->save();
-        return redirect('tanaman-data/index');
+        return redirect('tanaman-data/index_all');
+    }
+
+    public function tolak($id)
+    {
+        $data = KelolaData::find($id);
+        $data2 = KelolaData::getListDataAllInUpdate($id);
+        $data3 = KelolaData::getListDataAllInUpdate2($id);
+        return view('tanaman.tanaman-data.reject_data')
+        ->with('data', $data)
+        ->with('data2', $data2)
+        ->with('data3', $data3);
     }
 }
 

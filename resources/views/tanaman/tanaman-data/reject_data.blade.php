@@ -20,11 +20,11 @@
             <!-- /.box-header -->
             <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Data Tanaman User: {{ $data->name }}</h3>
+              <h3 class="box-title">Data Tanaman User: {{ $data2->name }} ({{ $data3->role }})</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="{{ url('tanaman-data/reject', $value->imageID) }}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{ url('tanaman-data/reject', $data->imageID) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
@@ -37,7 +37,7 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('admin/user/index/') }}" class="btn btn-default btn-flat"><i class="fa fa-close"></i> Batal</a>
+                  <a href="{{ url('tanaman-data/index_all/') }}" class="btn btn-default btn-flat"><i class="fa fa-close"></i> Batal</a>
                 <button type="submit" class="btn btn-primary btn-flat" onclick="return confirm('Apakah anda yakin akan menolak data ini ?')"><i class="fa fa-save"></i> Reject</button>
                   </div>
                 </div>

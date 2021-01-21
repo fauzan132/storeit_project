@@ -162,8 +162,10 @@ img {
                         <a href="{{ url('tanaman-data/detail_all', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
-                        <a href="#" class="btn bg-maroon btn-flat" title="Reject Data ini" ><i class="fa fa-close"></i> Reject</a>
+                        <a href="{{ url('tanaman-data/reject_form', $value->imageID) }}" class="btn bg-red btn-flat" title="Reject Data ini"><i class="fa fa-close"></i> Reject</a>
+                        
                     </td>
+                    
                 </tr>
                 @endforeach
                 </tbody>
@@ -186,12 +188,19 @@ img {
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+          
+    
             
         </section>
         <!-- /.Left col -->
       </div>
       <!-- /.row (main row) -->
 </section>
+
 @endsection
+
+
+
+
 
 
