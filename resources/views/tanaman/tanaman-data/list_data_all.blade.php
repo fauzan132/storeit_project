@@ -43,6 +43,7 @@ img {
             <!-- /.box-header -->
             <div class="box-body">
             <a href="{{ url('tanaman-data/create') }}"><button type="button" class="btn btn-primary btn-flat btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
+            <h4>Filter Data :</h4>
               <!-- form start -->
               <form class="form-horizontal" method="GET" action="{{ url('tanaman-data/cari_all') }}" enctype="multipart/form-data">
               {{ csrf_field() }}
@@ -57,6 +58,8 @@ img {
                       <option>Other</option>
                     </select>
                 </div>
+                </div>
+                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Plant Organ : </label>
                     <select class="form-control" id="plantorgan" name="plantorgan">
@@ -69,6 +72,8 @@ img {
                       <option>Other</option>
                     </select>
                 </div>
+                </div>
+                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Identification : </label>
                   @if(Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB")
@@ -90,6 +95,8 @@ img {
                     </select>
                   @endif
                 </div>
+                </div>
+                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Name : </label>
                     <select class="form-control" id="symptomname" name="symptomname">

@@ -43,12 +43,13 @@ img {
             <!-- /.box-header -->
             <div class="box-body">
             <a href="{{ url('tanaman-data/create') }}"><button type="button" class="btn btn-primary btn-flat btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
+            <h4>Filter Data :</h4>
              <!-- form start -->
              <form class="form-horizontal" method="GET" action="{{ url('tanaman-data/cari') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
-                <div class="form-group">
-                <div class="col-sm-3">
+              <div class="form-group">
+                  <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Plant Type : </label>
                     <select class="form-control" id="planttype" name="planttype">
                       <option>- Pilih -</option>
@@ -57,6 +58,8 @@ img {
                       <option>Other</option>
                     </select>
                 </div>
+                </div>
+                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Plant Organ : </label>
                     <select class="form-control" id="plantorgan" name="plantorgan">
@@ -69,8 +72,11 @@ img {
                       <option>Other</option>
                     </select>
                 </div>
+                </div>
+                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Identification : </label>
+                  @if(Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB")
                     <select class="form-control" id="generalident" name="generalident">
                       <option>- Pilih -</option>
                       <option>Pest</option>
@@ -79,7 +85,18 @@ img {
                       <option>Healthy</option>
                       <option>Other</option>
                     </select>
+                  @elseif(Auth::user()->role == "Expert EWINDO")
+                    <select class="form-control" id="generalident" name="generalident">
+                      <option>Disease</option>
+                    </select>
+                  @elseif(Auth::user()->role == "Expert BALITSA")
+                    <select class="form-control" id="generalident" name="generalident">
+                      <option>Pest</option>
+                    </select>
+                  @endif
                 </div>
+                </div>
+                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Name : </label>
                     <select class="form-control" id="symptomname" name="symptomname">
@@ -103,8 +120,8 @@ img {
                       <option>Healthy</option>
                       <option>Other</option>                      
                     </select>
-                </div>
-                </div>
+                  </div>
+                  </div>
                 <div class="form-group">
                     <div class="col-sm-2">
                       <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>

@@ -109,13 +109,13 @@
                 <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"></label>
                   <div class="col-sm-10">
-                  <a href="{{ url('tanaman-data/index_all/') }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
+                  <a href="{{ url('tanaman-data/index_all/') }}" class="btn btn-default btn-flat"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
                   <a href="{{ url('tanaman-data/edit_all', $data->imageID) }}" class="btn bg-orange btn-flat"><i class="fa fa-edit"></i> Ubah Data</a>
-                  <a href="{{ url('tanaman-data/riwayat_all', $data->imageID) }}" class="btn bg-green btn-flat"><i class="fa fa-edit" title="Lihat Riwayat Data ini"></i> Riwayat Data</a>
+                  <a href="{{ url('tanaman-data/riwayat_all', $data->imageID) }}" class="btn btn-primary btn-flat"><i class="fa fa-history" title="Lihat Riwayat Data ini"></i> Riwayat Data</a>
                   @if($data->status == "Uncropped & Unverified" || $data->status == "Cropped & Unverified")
-                  <a href="{{ url('tanaman-data/verifikasi', $data->imageID) }}" class="btn bg-success btn-flat"><i class="fa fa-check"></i> Verify Data</a>
+                  <a href="{{ url('tanaman-data/verifikasi', $data->imageID) }}" class="btn bg-olive btn-flat"><i class="fa fa-check"></i> Verify Data</a>
                   @elseif($data->status == "Uncropped & Verified" || $data->status == "Cropped & Verified")
-                  <a href="{{ url('tanaman-data/unverifikasi', $data->imageID) }}" class="btn bg-danger btn-flat"><i class="fa fa-close"></i> Unverify Data</a>
+                  <a href="{{ url('tanaman-data/unverifikasi', $data->imageID) }}" class="btn bg-maroon btn-flat"><i class="fa fa-close"></i> Unverify Data</a>
                   @endif
                   </div>
                 </div>
