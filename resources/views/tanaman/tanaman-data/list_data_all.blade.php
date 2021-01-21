@@ -168,8 +168,12 @@ img {
                         <a href="{{ url('tanaman-data/detail_all', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
+<<<<<<< HEAD
                         <a href="{{ url('tanaman-data/reject', $value->imageID) }}" class="btn bg-red btn-flat" title="Reject Data ini"><i class="fa fa-close"></i> Reject</a>
                         
+=======
+                        <a href="#" class="btn bg-maroon btn-flat" title="Reject Data ini" ><i class="fa fa-close"></i> Reject</a>
+>>>>>>> 1456651369940315206a982c5420b8b192beeb29
                     </td>
                     
                 </tr>
@@ -204,7 +208,10 @@ img {
       </div>
       <!-- /.row (main row) -->
 </section>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1456651369940315206a982c5420b8b192beeb29
 @endsection
 
 

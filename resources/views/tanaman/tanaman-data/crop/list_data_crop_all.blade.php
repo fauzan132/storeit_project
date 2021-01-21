@@ -75,7 +75,7 @@ img {
                         <a href="{{ url('tanaman-data/crop/edit_all', $value->imageID) }}" class="btn btn-success btn-md" title="Ubah Data ini"><i class="fa fa-plus"></i> Perbaharui</a>
                     </td>
                     <td>
-                        <a href="{{ url('tanaman-data/crop/detail_all', $value->imageID) }}" class="btn btn-default btn-md" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
+                        <a href="{{ url('tanaman-data/crop/detail_all', $value->imageID) }}" class="btn btn-default btn-md btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <!-- <td>
                         <a href="{{ url('tanaman-data/crop/hapus_all', $value->imageID) }}" class="btn btn-danger btn-md" title="Hapus Data ini"><i class="fa fa-trash"></i> Hapus</a>
