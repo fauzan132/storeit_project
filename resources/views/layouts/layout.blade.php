@@ -99,7 +99,7 @@ desired effect
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ asset('dist/img/user.png') }}" class="img-circle" alt="User Image">
+                <img src="{{ asset('dist/img/user.png') }}" class="img-circle" alt="User Image" style="margin:0 auto!important">
 
                 <p>
                 {{ Auth::user()->name }} 
