@@ -24,7 +24,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal" method="POST" action="{{ url('admin/user/update',$data['id']) }}" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="{{ url('tanaman-data/reject', $value->imageID) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
