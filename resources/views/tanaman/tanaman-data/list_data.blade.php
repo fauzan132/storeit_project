@@ -48,7 +48,6 @@ img {
              <form class="form-horizontal" method="GET" action="{{ url('tanaman-data/cari') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
               <div class="box-body">
-              <div class="form-group">
                   <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Plant Type : </label>
                     <select class="form-control" id="planttype" name="planttype">
@@ -58,8 +57,6 @@ img {
                       <option>Other</option>
                     </select>
                 </div>
-                </div>
-                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Plant Organ : </label>
                     <select class="form-control" id="plantorgan" name="plantorgan">
@@ -72,8 +69,6 @@ img {
                       <option>Other</option>
                     </select>
                 </div>
-                </div>
-                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Identification : </label>
                   @if(Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB")
@@ -95,8 +90,6 @@ img {
                     </select>
                   @endif
                 </div>
-                </div>
-                <div class="form-group">
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Name : </label>
                     <select class="form-control" id="symptomname" name="symptomname">
@@ -121,16 +114,15 @@ img {
                       <option>Other</option>                      
                     </select>
                   </div>
-                  </div>
-                <div class="form-group">
                     <div class="col-sm-2">
+                    <br>
                       <button type="submit" class="btn bg-purple btn-flat"><i class="fa fa-eye"></i> Tampilkan</button>
                     </div>
                     <div class="col-sm-2">
+                    <br>
                       <a href="{{ url('tanaman-data/index') }}" class="btn bg-green btn-flat" title="Reset Pencarian"><i class="fa fa-check"></i> Reset</a>
                     </div>
                 </div>
-              </div>
             </form>
             <div style="overflow-x:auto;">
               <table id="example1" class="table table-bordered table-striped">
