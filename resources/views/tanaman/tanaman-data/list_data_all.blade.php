@@ -132,6 +132,7 @@ img {
                   </div>
                 </div>
               </form>
+              <div style="overflow-x:auto;">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -167,7 +168,7 @@ img {
                         <a href="{{ url('tanaman-data/detail_all', $value->imageID) }}" class="btn bg-orange btn-flat" title="Lihat Data ini"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                     <td>
-                        <a href="{{ url('tanaman-data/reject', $value->imageID) }}" class="btn bg-maroon btn-flat" onclick="return confirm('Apakah anda yakin akan menolak data ini ?')" title="Reject Data ini"><i class="fa fa-close"></i> Reject</a>
+                        <a href="#" class="btn bg-maroon btn-flat" title="Reject Data ini" data-toggle="modal" data-target="#myModal"><i class="fa fa-close"></i> Reject</a>
                     </td>
                 </tr>
                 @endforeach
@@ -186,6 +187,7 @@ img {
                 </tr>
                 </tfoot>
               </table>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -196,6 +198,31 @@ img {
       </div>
       <!-- /.row (main row) -->
 </section>
+ <!-- Modal -->
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Reject Data</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <div class="col-sm-8">
+              <label for="inputEmail3">Tuliskan alasan anda : </label>
+                <textarea class="form-control" name="imagecomment" id="imagecomment"></textarea>
+              </div>
+          </div>
+        <div class="modal-footer">
+          <a href="{{ url('tanaman-data/reject', $value->imageID) }}" onclick="return confirm('Apakah anda yakin akan menolak data ini ?')" class="btn bg-maroon btn-flat" data-dismiss="modal"><i class="fa fa-close"></i> Reject</a>
+          <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 @endsection
 
 

@@ -23,6 +23,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+            <div style="overflow-x:auto;">
             <!-- form start -->
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -56,6 +57,7 @@
               </table>
                 
               <a href="{{ url('tanaman-data/detail', $id) }}" class="btn btn-primary btn-flat"><i class="fa fa-arrow-circle-left" title="Kembali"></i> Kembali</a>
+              </div>
               </div>
             <!-- /.box-body -->
         
