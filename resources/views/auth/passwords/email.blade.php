@@ -31,17 +31,18 @@
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="{{ asset('login_assets/images/logo.png') }}" alt="IMG">
 				</div>
-                @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
                     <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
                         @csrf
 					<span class="login100-form-title">
 						Reset Password
 					</span>
+					@if (session('status'))
+                        <div class="alert alert-success" role="alert">
+							Kami Telah Mengirimkan Tautan Reset Password Ke Email Anda, mohon untuk dicheck.
+                            <!-- {{ session('status') }} -->
+                        </div>
+                    @endif
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="Masukan email anda">
@@ -60,6 +61,12 @@
 						<button class="login100-form-btn">
                         Send Password Reset Link
 						</button>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<a href="/login" class="login100-form-btn">
+                        Kembali
+						</a>
 					</div>
 				</form>
 			</div>

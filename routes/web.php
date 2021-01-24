@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => ['web','auth']], function(){
     //redirect to login
-    Route::get('/home','HomeController@index');
+    Route::get('/','HomeController@index');
     Route::get('/', function(){
         if(Auth::user()->role=="Admin"){
             \LogActivity::addToLog('Login ke dalam sistem');
