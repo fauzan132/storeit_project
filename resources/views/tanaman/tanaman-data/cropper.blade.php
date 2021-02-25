@@ -144,8 +144,8 @@ $("#crop").click(function(){
 	    width: 256,
 	    height: 256,
       });
-    var position = canvas.position();
-    $( "p" ).last().text( "left: " + position.left + ", top: " + position.top );
+    // var position = canvas.position();
+    // $( "p" ).last().text( "left: " + position.left + ", top: " + position.top );
 	
 	//upload to folder "upload"
     canvas.toBlob(function(blob) {
