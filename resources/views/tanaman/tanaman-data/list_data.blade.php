@@ -42,6 +42,21 @@ img {
             
             <!-- /.box-header -->
             <div class="box-body">
+            <br>
+            @if(session('success'))
+                <div class="alert alert-success">
+                  <button type="button" class="close" data-dismiss="alert">x</button>
+              {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                  <button type="button" class="close" data-dismiss="alert">x</button>
+              {{ session('error') }}
+                </div>
+            @endif
+            <br>
             <a href="{{ url('tanaman-data/create') }}"><button type="button" class="btn btn-primary btn-flat btn-md"><i class="fa fa-plus"></i> Tambah Data</button></a><br><br>
             <h4>Filter Data :</h4>
              <!-- form start -->
@@ -55,6 +70,16 @@ img {
                       <option>Chilli</option>
                       <option>Tomato</option>
                       <option>Other</option>
+                    </select>
+                    <br>
+                    <label for="inputEmail3">Pilih Status : </label>
+                    <select class="form-control" id="status" name="status">
+                      <option>- Pilih -</option>
+                      <option>Uncropped & Unverified</option>
+                      <option>Uncropped & Verified</option>
+                      <option>Cropped & Unverified</option>
+                      <option>Cropped & Verified</option>
+                      <option>Reject</option>
                     </select>
                 </div>
                 <div class="col-sm-3">
@@ -71,7 +96,7 @@ img {
                 </div>
                 <div class="col-sm-3">
                   <label for="inputEmail3">Pilih Symptom Identification : </label>
-                  @if(Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB")
+                  @if(Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB" || Auth::user()->role == "Cropper")
                     <select class="form-control" id="generalident" name="generalident">
                       <option>- Pilih -</option>
                       <option>Pest</option>

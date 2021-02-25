@@ -148,6 +148,7 @@ desired effect
           <li><a href="{{ url('admin/log_activity/index') }}"><i class="fa fa-file"></i> <span>Log Activity User</span></a></li>
           <li><a href="{{ url('tanaman-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
           <li><a href="{{ url('tanaman-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman All User</span></a></li>
+          <li><a href="{{ url('tanaman-data/statistik') }}"><i class="fa fa-file"></i> <span>Data Laporan / Statistik</span></a></li>
         </ul>
       @elseif(Auth::user()->role=="Public")
         <ul class="sidebar-menu">
@@ -157,6 +158,7 @@ desired effect
           <!-- Optionally, you can add icons to the links -->
           <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ url('tanaman-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
+          <li><a href="{{ url('tanaman-data/statistik') }}"><i class="fa fa-file"></i> <span>Data Laporan / Statistik</span></a></li>
         </ul>
       @elseif(Auth::user()->role=="Expert ITB")
         <ul class="sidebar-menu"> <li class="header">Akun</li>
@@ -166,7 +168,8 @@ desired effect
           <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ url('tanaman-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
           <li><a href="{{ url('tanaman-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman All User</span></a></li>
-        </ul>
+          <li><a href="{{ url('tanaman-data/statistik') }}"><i class="fa fa-file"></i> <span>Data Laporan / Statistik</span></a></li>
+    </ul>
       @elseif(Auth::user()->role=="Expert EWINDO")
         <ul class="sidebar-menu">
           <li class="header">Akun</li>
@@ -176,6 +179,7 @@ desired effect
           <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ url('tanaman-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
           <li><a href="{{ url('tanaman-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman All User</span></a></li>
+          <li><a href="{{ url('tanaman-data/statistik') }}"><i class="fa fa-file"></i> <span>Data Laporan / Statistik</span></a></li>
         </ul>
       @elseif(Auth::user()->role=="Expert BALITSA")
         <ul class="sidebar-menu">
@@ -186,6 +190,17 @@ desired effect
           <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
           <li><a href="{{ url('tanaman-data/index') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
           <li><a href="{{ url('tanaman-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman All User</span></a></li>
+          <li><a href="{{ url('tanaman-data/statistik') }}"><i class="fa fa-file"></i> <span>Data Laporan / Statistik</span></a></li>
+        </ul>
+      @elseif(Auth::user()->role=="Cropper")
+        <ul class="sidebar-menu">
+          <li class="header">Akun</li>
+            <li><a href="{{ url('profile/index') }}"><i class="fa fa-user"></i> <span>Profil Pengguna</span></a></li>
+          <li class="header">Menu</li>
+          <!-- Optionally, you can add icons to the links -->
+          <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+          <li><a href="{{ url('tanaman-data/index_all') }}"><i class="fa fa-image"></i> <span>Data Tanaman</span></a></li>
+          <li><a href="{{ url('tanaman-data/statistik') }}"><i class="fa fa-file"></i> <span>Data Laporan / Statistik</span></a></li>
         </ul>
       @endif
       

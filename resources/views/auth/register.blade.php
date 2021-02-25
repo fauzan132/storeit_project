@@ -113,6 +113,7 @@
 		<option value="Expert ITB">Expert ITB</option>
 		<option value="Expert EWINDO">Expert EWINDO</option>
 		<option value="Expert BALITSA">Expert BALITSA</option>
+		<option value="Expert BALITSA">Cropper</option>
 	</select>
 	</div>
 </div>

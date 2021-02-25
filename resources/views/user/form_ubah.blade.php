@@ -51,6 +51,7 @@
                             <option value="Expert ITB" <?php if($data['role']== "Expert ITB"){ echo"selected"; } ?>>Expert ITB</option>
                             <option value="Expert EWINDO" <?php if($data['role']== "Expert EWINDO"){ echo"selected"; } ?>>Expert EWINDO</option>
                             <option value="Expert BALITSA" <?php if($data['role']== "Expert BALITSA"){ echo"selected"; } ?>>Expert BALITSA</option>
+                            <option value="Cropper" <?php if($data['role']== "Cropper"){ echo"selected"; } ?>>Cropper</option>
                         </select>
                     </div>
                 </div>

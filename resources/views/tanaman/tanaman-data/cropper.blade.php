@@ -24,6 +24,21 @@ img {
 .modal-lg{
   max-width: 1000px !important;
 }
+
+.image-container{
+    text-align:center;
+    overflow:scroll;
+    width:400px;
+    height:400px;
+    margin:auto;
+}
+.image-container img{
+    position:relative;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
+
 </style>
 <body>
 
@@ -37,16 +52,23 @@ img {
         </a>
       </div>
       <div class="modal-body">
-        <div class="img-container">
+        <div class="img-container" >
             <div class="row">
                 <div class="col-md-8">
-                    <img id="image" src="{{ $data->ImageURL }}">
+                    <div id="image-container">
+                      <img id="image" src="{{ $data->ImageURL }}">
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="preview"></div>
-                </div>
+                    <br>
+                    <!-- <div class = "ml-3"><label>Zoom In / Zoom Out </label></div>
+                    <form><input id="slider" type="range" min="100" max="200"/></form> -->
+                    <p></p>
+                </div>   
             </div>
-			<small style="color:red;">*Arahkan kursor pada gambar dan klik kiri</small>
+            
+			    <small style="color:red;">*Arahkan kursor pada gambar dan klik kiri</small>
         </div>
       </div>
       <div class="modal-footer">
@@ -59,6 +81,15 @@ img {
 
 </div>
 </div>
+
+<script>
+  var zoomImage = document.getElementById('image');
+  var slider = document.getElementById('slider');
+  slider.addEventListener('change', function() {
+      zoomImage.style.width = slider.value+'%';
+  }, false);
+</script>
+
 <script>
 var $modal = $('#modal');
 var image = document.getElementById('image');
@@ -87,6 +118,7 @@ $("body").on("change", ".image", function(e){
       }
     }
 });
+
 //aksi crop di modal
 $modal.on('shown.bs.modal', function () {
     cropper = new Cropper(image, {
@@ -112,6 +144,8 @@ $("#crop").click(function(){
 	    width: 256,
 	    height: 256,
       });
+    var position = canvas.position();
+    $( "p" ).last().text( "left: " + position.left + ", top: " + position.top );
 	
 	//upload to folder "upload"
     canvas.toBlob(function(blob) {
@@ -134,6 +168,12 @@ $("#crop").click(function(){
          }
     });
 })
+
+$("#my-range").on("change", function() { 
+    $("#image").css({"zoom": $(this).val() });
+});
+
 </script>
+
 </body>
 </html> 

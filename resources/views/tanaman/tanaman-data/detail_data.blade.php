@@ -32,8 +32,8 @@
 
                   <div class="col-sm-10">
                     <!-- <input type="text" name="imageurl" class="form-control" value="{{ $data['ImageURL'] }}"> -->
-                    <a href="{{ URL::asset("images/{$data['ImageURL']}") }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:500px">
-                    <img src="{{ URL::asset("images/{$data['ImageURL']}") }}" class="img-fluid" width="600px">
+                    <a href="{{ $data['ImageURL'] }}" data-toggle="lightbox" data-gallery="image-gallery" data-title="{{ $data['plantType'] }}" style="width:500px">
+                    <img src="{{ $data['ImageURL'] }}" class="img-fluid" width="600px">
                     </a>
                     <input type="hidden" name="tmp_image" value="{{ $data['ImageURL'] }}">
                     <input type="hidden" name="user_id" value="{{ $data['userID'] }}">
@@ -88,6 +88,7 @@
 
                   <div class="col-sm-10">
                     <input  type="text" name="imagecomment" class="form-control" id="imagecomment" placeholder="Image Coment ..." value="{{ $data['ImageComment'] }}" disabled>
+                    <a href="{{ url('tanaman-data/riwayat_image', $data->imageID) }}" class="btn btn-primary btn-flat"><i class="fa fa-edit" title="Lihat Riwayat Comment Data ini"></i> Riwayat Comment</a>
                   </div>
                 </div>
 

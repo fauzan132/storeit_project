@@ -1,2 +1,0 @@
--resizeable crop
--lokasi crop

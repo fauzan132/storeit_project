@@ -16,7 +16,7 @@ class CekRole
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB" || Auth::user()->role == "Expert BALITSA" || Auth::user()->role == "Expert EWINDO") {
+        if (Auth::user() &&  Auth::user()->role == "Admin" || Auth::user()->role == "Expert ITB" || Auth::user()->role == "Expert BALITSA" || Auth::user()->role == "Expert EWINDO" || Auth::user()->role == "Cropper") {
             return $next($request);
         }
 

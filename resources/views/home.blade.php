@@ -97,6 +97,12 @@
         <h4>Selamat Datang</h4>
 
         <p> Ini Halaman Expert BALITSA!</p>
+        </div>
+        @elseif(Auth::user()->role == 'Cropper')
+        <div class="callout callout-info">
+        <h4>Selamat Datang</h4>
+
+        <p> Ini Halaman Cropper</p>
         </div>           
         @endif
             

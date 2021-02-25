@@ -211,6 +211,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'LogActivity' => App\Helpers\LogActivity::class,
         'DetailRawData' => App\Helpers\DetailRawData::class,
+        'ImageHistory' => App\Helpers\ImageHistory::class,
     ],
 
 ];

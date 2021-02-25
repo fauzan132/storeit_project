@@ -33,6 +33,9 @@ Route::group(['middleware' => ['web','auth']], function(){
         }elseif(Auth::user()->role=="Expert BALITSA"){
             \LogActivity::addToLog('Login ke dalam sistem');
             return view('tanaman.home');
+        }elseif(Auth::user()->role=="Cropper"){
+            \LogActivity::addToLog('Login ke dalam sistem');
+            return view('tanaman.home');
         }
     });
 });
@@ -62,6 +65,7 @@ Route::group(['middleware' => ['auth', 'roles']], function () {
     Route::get('tanaman-data/unverifikasi/{id}', 'KelolaDataController@unverifikasi');
     //Riwayat Data
     Route::get('tanaman-data/riwayat_all/{id}', 'KelolaDataController@riwayat_all');
+    Route::get('tanaman-data/riwayat_image_all/{id}', 'KelolaDataController@riwayat_image_all');
     //Cari Data
     Route::get('tanaman-data/cari_all/', 'KelolaDataController@caridata_all');
     //Fitur Cropping ALL
@@ -90,6 +94,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 });
 Route::get('tanaman-data/cari/', 'KelolaDataController@caridata');
 Route::get('tanaman-data/riwayat/{id}', 'KelolaDataController@riwayat');
+Route::get('tanaman-data/riwayat_image/{id}', 'KelolaDataController@riwayat_image');
 //Kelola Data Crop
 Route::get('tanaman-data/crop/awal/{id}', 'KelolaDataCropController@awal');
 Route::get('tanaman-data/crop/detail/{id}', 'KelolaDataCropController@show');
@@ -116,4 +121,9 @@ Route::get('profile/edit/{id}', 'UserController@edit_profile');
 Route::post('profile/update/{id}', 'UserController@ubah_profile');
 Route::get('profile/edit_login/{id}', 'UserController@edit_login');
 Route::post('profile/update_login/{id}', 'UserController@ubah_login');
+
+//Kelola Statistik
+Route::get('tanaman-data/statistik/', 'KelolaDataController@statistik');
+Route::get('tanaman-data/cari-statistik/', 'KelolaDataController@statistik_cari');
+
 
